@@ -1,0 +1,319 @@
+#!/usr/bin/env python3
+"""INVICTUS 모닝 브리핑 v4 — 전 지표 신호등 + 모멘텀 순위"""
+import os,requests,xml.etree.ElementTree as ET
+from datetime import datetime,timezone,timedelta
+DISCORD_WEBHOOK=os.environ.get("DISCORD_WEBHOOK","")
+FRED_API_KEY=os.environ.get("FRED_API_KEY","")
+ANTHROPIC_API_KEY=os.environ.get("ANTHROPIC_API_KEY","")
+KST=timezone(timedelta(hours=9))
+UA={"User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"}
+
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+# 보유종목 — 변경 시 여기만 수정
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+TICKERS = ["GLD","SMH","EWZ","XLE","SLV","PAVE","COPX","XLU"]
+EMOJIS  = {"GLD":"🥇","SMH":"📱","EWZ":"🇧🇷","XLE":"🛢️","SLV":"🥈","PAVE":"🏗️","COPX":"🟤","XLU":"⚡"}
+# ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+def yp(s):
+    try:return requests.get(f"https://query2.finance.yahoo.com/v8/finance/chart/{requests.utils.quote(s)}?interval=1d&range=1d",headers=UA,timeout=10).json()["chart"]["result"][0]["meta"]["regularMarketPrice"]
+    except:return None
+def yh(s,r="1y"):
+    try:
+        c=requests.get(f"https://query2.finance.yahoo.com/v8/finance/chart/{requests.utils.quote(s)}?interval=1d&range={r}",headers=UA,timeout=15).json()["chart"]["result"][0]["indicators"]["quote"][0]["close"]
+        return[x for x in c if x is not None]
+    except:return[]
+def fv(s):
+    if not FRED_API_KEY:return None
+    try:return float(requests.get(f"https://api.stlouisfed.org/fred/series/observations?series_id={s}&api_key={FRED_API_KEY}&limit=1&sort_order=desc&file_type=json",timeout=10).json()["observations"][0]["value"])
+    except:return None
+def mom(h,days):
+    if len(h)<days+1:return None
+    return(h[-1]-h[-days-1])/h[-days-1]*100
+
+def fetch():
+    vix=yp("^VIX");vix3m=yp("^VIX3M");move=yp("^MOVE");wti=yp("CL=F")
+    dxy=yp("DX-Y.NYB");rsp=yp("RSP");vvix=yp("^VVIX")
+    hyg=yp("HYG");tlt=yp("TLT")
+    krw=yp("KRW=X");btc=yp("BTC-USD");esf=yp("ES=F");nqf=yp("NQ=F")
+    sh=yh("SPY","1y");rh=yh("RSP","2mo");mh=yh("^MOVE","2mo");wh=yh("CL=F","2mo")
+    hyg_h=yh("HYG","2mo");tlt_h=yh("TLT","2mo");btc_h=yh("BTC-USD","2mo")
+    oas=fv("BAMLH0A0HYM2");t5y=fv("T5YIE");sahm=fv("SAHMCURRENT")
+    dfii=fv("DFII10");t10=fv("T10Y2Y");icsa=fv("ICSA")
+    rrp=fv("RRPONTSYD");gs2=fv("GS2");gs10=fv("GS10")
+    spy=sh[-1] if sh else None
+    s200=sum(sh[-200:])/200 if len(sh)>=200 else None
+    s60=sum(sh[-60:])/60 if len(sh)>=60 else None
+    def bd(a,m):
+        if not m:return 0
+        c=0
+        for p in reversed(a):
+            if p<m:c+=1
+            else:break
+        return c
+    b200=bd(sh,s200);b60=bd(sh,s60);br60=(spy-s60)/s60 if spy and s60 else None
+    wc=(wh[-1]-wh[-8])/wh[-8] if len(wh)>=8 else None
+    vv=vix/vix3m if vix and vix3m and vix3m>0 else None
+    mm=sum(mh[-20:])/20 if len(mh)>=20 else None
+    mr=move/mm if move and mm and mm>0 else None
+    brd=None
+    if len(sh)>=22 and len(rh)>=22:
+        sr=sh[-1]/sh[-22];rr_=rh[-1]/rh[-22]
+        if rr_>0:brd=sr/rr_
+    s1d=mom(sh,1);s1w=mom(sh,5);s1m=mom(sh,22)
+    # 유동성 일간변화
+    hyg_1d=mom(hyg_h,1);tlt_1d=mom(tlt_h,1);btc_1d=mom(btc_h,1)
+    # 종목별
+    hdata={}
+    for tk in TICKERS:
+        h=yh(tk,"1y");p=h[-1] if h else yp(tk)
+        hdata[tk]={"p":p,"1D":mom(h,1),"1M":mom(h,22),"3M":mom(h,63),"6M":mom(h,126),"12M":mom(h,252)}
+    gp=hdata.get("GLD",{}).get("p");sp_=hdata.get("SLV",{}).get("p");cp=hdata.get("COPX",{}).get("p")
+    gs_r=gp/sp_ if gp and sp_ and sp_>0 else None
+    cg_r=cp/gp if cp and gp and gp>0 else None
+    return{
+        "VIX":vix,"VIX3M":vix3m,"MOVE":move,"OAS":oas,"WTI":wti,"SPY":spy,
+        "T5YIE":t5y,"DXY":dxy,"RSP":rsp,"DFII10":dfii,"T10Y2Y":t10,"ICSA":icsa,
+        "SAHM":sahm,"S200":s200,"S60":s60,"b200":b200,"b60":b60,"br60":br60,
+        "WC":wc,"VV":vv,"MM":mm,"MR":mr,"BRD":brd,"S1D":s1d,"S1W":s1w,"S1M":s1m,
+        "VVIX":vvix,"HYG":hyg,"TLT":tlt,"RRP":rrp,"GS2":gs2,"GS10":gs10,
+        "KRW":krw,"BTC":btc,"ESF":esf,"NQF":nqf,
+        "GS_R":gs_r,"CG_R":cg_r,"H":hdata,
+        "HYG_1D":hyg_1d,"TLT_1D":tlt_1d,"BTC_1D":btc_1d,
+    }
+
+# ── Oracle ──
+def lin(v,lo,hi,mx):
+    if v<=lo:return 0
+    if v>=hi:return mx
+    return round(mx*(v-lo)/(hi-lo),2)
+def calc_tide(s,ic):
+    s=s or 0;ic=ic or 220000
+    if s>=0.50:return"RECESSION_CONFIRMED"
+    if s>=0.30:return"RECESSION_WATCH"
+    if s>=0.25 or ic>=300000:return"SLOWDOWN"
+    return"EXPANSION"
+def calc_inferno(t,w):
+    t=t or 2.5;w=w or 80
+    if t<1.5:return"DEFLATION_RISK"
+    if t>=3.0 or w>=120:return"HOT"
+    if t>=2.7 or w>=95:return"RISING"
+    return"STABLE"
+def calc_curve(s):
+    s=s if s is not None else 0.5
+    if s<=-0.5:return"DEEP_INVERT"
+    if s<=0:return"INVERTED"
+    if s<=0.3:return"FLAT"
+    return"NORMAL"
+def calc_gradient(d):
+    vs=lin(d["VIX"]or 18,18,30,25);os_=lin(d["OAS"]or 3,3,5.5,25);ms=lin(d["MOVE"]or 80,80,130,25)
+    mr=d.get("MR")
+    if mr and mr>1.0:
+        b=5 if mr>=1.20 else 4 if mr>=1.15 else 3 if mr>=1.10 else 1.5 if mr>=1.05 else 0
+        ms=min(25,ms+b)
+    fs=8;rr=lin(d["DFII10"]or 1.0,0.5,2.5,15) if d.get("DFII10") else 0
+    t=min(100,round(vs+os_+ms+fs+rr,1));df=round(10+(t/100)*80,1)
+    if t<20:bk="🟢GREEN"
+    elif t<40:bk="🟡경계"
+    elif t<60:bk="🟡YELLOW"
+    elif t<80:bk="🟠RED"
+    else:bk="🔴STORM"
+    return{"t":t,"bk":bk,"df":df,"ak":round(100-df,1),"vs":vs,"os":os_,"ms":ms,"fs":fs,"rr":rr}
+def calc_regime(d,g):
+    td=calc_tide(d["SAHM"],d["ICSA"]);inf=calc_inferno(d["T5YIE"],d["WTI"]);cv=calc_curve(d["T10Y2Y"])
+    df=d["DFII10"]or 1.0;gt=g["t"];sm=d["SAHM"]
+    if td=="RECESSION_CONFIRMED" or(td=="RECESSION_WATCH" and cv=="DEEP_INVERT"):return{"l":"🔴🔴 침체확정","rp":60,"td":td,"inf":inf,"cv":cv}
+    if td in("SLOWDOWN","RECESSION_WATCH") and inf in("RISING","HOT"):return{"l":"🟠 스태그플레이션","rp":30,"td":td,"inf":inf,"cv":cv}
+    if td in("SLOWDOWN","RECESSION_WATCH") and inf=="STABLE":return{"l":"🔴 침체경계","rp":40,"td":td,"inf":inf,"cv":cv}
+    if td in("SLOWDOWN","RECESSION_WATCH") and inf=="DEFLATION_RISK":return{"l":"🔵 디플레형","rp":45,"td":td,"inf":inf,"cv":cv}
+    if td=="EXPANSION" and df>1.5 and inf in("RISING","HOT"):return{"l":"🟡 고금리","rp":20,"td":td,"inf":inf,"cv":cv}
+    if td=="EXPANSION" and gt<15 and(sm or 0)<0.15 and cv!="DEEP_INVERT":return{"l":"🟢🟢 초강세장","rp":5,"td":td,"inf":inf,"cv":cv}
+    return{"l":"🟢 확장기","rp":10,"td":td,"inf":inf,"cv":cv}
+def calc_triggers(d):
+    vix=d["VIX"]or 0;move=d["MOVE"]or 0;oas=d["OAS"]or 0;wti=d["WTI"]or 0;t5y=d["T5YIE"]or 0;vv=d["VV"]or 0
+    ids=["E0","E1","E2","E3","E4","L0a","L0b","L1","L2","L3"]
+    act=[vix>=30 or vv>1.05,t5y>3 and wti>120,d["b200"]>=5,d["BRD"]is not None and d["BRD"]>=1.12,d["WC"]is not None and d["WC"]>=0.20,oas>=5.8,oas>=5.2,vix>=42 or move>=190 or oas>=8.5,vix>=45,d["b60"]>=12 and d.get("br60")is not None and d["br60"]<=-0.05]
+    chips=" ".join(f"🔴{ids[i]}" if act[i] else f"⚪{ids[i]}" for i in range(len(ids)))
+    stg="CLEAR"
+    if act[9]:stg="L3"
+    elif act[8]:stg="L2"
+    elif act[7]:stg="L1"
+    elif act[5]or act[6]:stg="L0"
+    elif any(act[:5]):stg="PRE"
+    gld=t5y>=3.0 or(t5y>=2.7 and wti>=95)
+    return{"chips":chips,"stg":stg,"gld":gld}
+
+# ── 유틸 ──
+def f(v,u="",dc=1):
+    if v is None:return"--"
+    return f"{u}{v:.{dc}f}"
+def sg(v):
+    if v is None:return"--"
+    return f"+{v:.1f}%" if v>=0 else f"{v:.1f}%"
+def dot(ok):
+    if ok is None:return"❓"
+    return"🟢" if ok else"🔴"
+def dot3(v,good,warn):
+    """3단계 신호등: 🟢정상 🟡경고 🔴위험"""
+    if v is None:return"❓"
+    if isinstance(good,str):
+        if good=="pos":return"🟢" if v>0 else("🟡" if v>-2 else"🔴")
+        if good=="neg":return"🟢" if v<0 else("🟡" if v<2 else"🔴")
+    if warn is None:return"🟢" if v<good else"🔴"
+    if v<good:return"🟢"
+    if v<warn:return"🟡"
+    return"🔴"
+def momdot(v):
+    if v is None:return"⚪"
+    if v>=5:return"🟢"
+    if v>=0:return"🟡"
+    if v>=-5:return"🟠"
+    return"🔴"
+def send(p):
+    if not DISCORD_WEBHOOK:return
+    try:requests.post(DISCORD_WEBHOOK,json=p,timeout=10)
+    except:pass
+
+# ── 뉴스 ──
+def fetch_news():
+    headlines=[]
+    for url,src in[("https://www.cnbc.com/id/20910258/device/rss/rss.html","CNBC"),("https://feeds.marketwatch.com/marketwatch/topstories/","MW"),("https://www.cnbc.com/id/10000664/device/rss/rss.html","CNBC")]:
+        try:
+            r=requests.get(url,headers=UA,timeout=10);root=ET.fromstring(r.content)
+            for item in root.findall(".//item")[:5]:
+                t=item.find("title")
+                if t is not None and t.text:headlines.append(f"[{src}] {t.text.strip()}")
+        except:pass
+    return headlines[:15]
+def translate_news(headlines):
+    if not ANTHROPIC_API_KEY or not headlines:return None
+    try:
+        joined="\n".join(f"{i+1}. {h}" for i,h in enumerate(headlines))
+        r=requests.post("https://api.anthropic.com/v1/messages",headers={"x-api-key":ANTHROPIC_API_KEY,"anthropic-version":"2023-06-01","content-type":"application/json"},json={"model":"claude-haiku-4-5-20251001","max_tokens":1000,"messages":[{"role":"user","content":f"아래 영문 경제 뉴스를 한글 1줄 요약. 중복 합치고 5~8개만. ▸ 로 시작. 출처 불필요.\n\n{joined}"}]},timeout=30)
+        print(f"  Claude: {r.status_code}")
+        if r.status_code!=200:print(f"  응답: {r.text[:300]}");return None
+        return r.json().get("content",[{}])[0].get("text","").strip() or None
+    except Exception as e:print(f"  번역에러: {e}");return None
+
+# ── 브리핑 생성 ──
+def build(d,reg,grd,trg):
+    now=datetime.now(KST);date=now.strftime("%Y-%m-%d (%a)")
+    stg=trg["stg"];se={"CLEAR":"🟢","PRE":"🟡","L0":"🟠","L1":"🔴","L2":"🔴🔴","L3":"⚫"}.get(stg,"⚪")
+    sc={"CLEAR":0x3DBB7E,"PRE":0xEFB030,"L0":0xEFB030,"L1":0xE07238,"L2":0xD83030,"L3":0x2C2C2A}.get(stg,0x5B9CF6)
+    vs200=f"{(d['SPY']-d['S200'])/d['S200']*100:+.1f}%" if d['SPY'] and d['S200'] else"--"
+    vs60=f"{(d['SPY']-d['S60'])/d['S60']*100:+.1f}%" if d['SPY'] and d['S60'] else"--"
+    rv=d["VIX"]is not None and d["VIX"]<20;rm=d["MOVE"]is not None and d["MOVE"]<100;rs=d["SAHM"]is not None and d["SAHM"]<0.30
+
+    # 1️⃣ 핵심 요약
+    e1={"title":f"☀️ INVICTUS 모닝 브리핑 — {date}","color":sc,"description":(
+        f"{se} **경보 {stg}** │ **{reg['l']}** │ RP **{reg['rp']}%**\n"
+        f"📊 그래디언트 **{grd['t']}**/100 {grd['bk']} │ 🛡️{grd['df']}% │ ⚔️{grd['ak']}%"
+    )}
+
+    # 2️⃣ 센서
+    e2={"title":"📡 핵심 센서","color":0x5B9CF6,"description":(
+        f"{dot3(d['VIX'],30,42)} **VIX {f(d['VIX'])}** 공포지수 │ "
+        f"{dot3(d['MOVE'],150,190)} **MOVE {f(d['MOVE'],dc=0)}** 채권변동성 │ "
+        f"{dot3(d['OAS'],5.2,5.8)} **OAS {f(d['OAS'],'',2)}%** 신용위험\n"
+        f"{dot3(d['WTI'],95,120)} **WTI ${f(d['WTI'])}** 유가 │ "
+        f"{dot3(d['T5YIE'],2.7,3.0)} **T5YIE {f(d['T5YIE'],'',2)}%** 기대인플레 │ "
+        f"{dot3(d['DXY'],100,104)} **DXY {f(d['DXY'],dc=2)}** 달러강도\n"
+        f"{dot3(d['VVIX'],110,130)} **VVIX {f(d['VVIX'],dc=0)}** VIX선행경보 │ "
+        f"{dot3(d['MR'],1.05,1.10) if d['MR'] else'❓'} **MOVE/MA20 {f(d['MR'],dc=3)}** 채권급변 │ "
+        f"{dot3(d['VV'],1.00,1.05) if d['VV'] else'❓'} **VIX/VIX3M {f(d['VV'],dc=3)}** 단기공포"
+    )}
+
+    # 3️⃣ 레짐 + TIER2
+    td_dot={"EXPANSION":"🟢","SLOWDOWN":"🟡","RECESSION_WATCH":"🟠","RECESSION_CONFIRMED":"🔴"}.get(reg["td"],"❓")
+    inf_dot={"STABLE":"🟢","RISING":"🟡","HOT":"🔴","DEFLATION_RISK":"🔵"}.get(reg["inf"],"❓")
+    cv_dot={"NORMAL":"🟢","FLAT":"🟡","INVERTED":"🟠","DEEP_INVERT":"🔴"}.get(reg["cv"],"❓")
+    e3={"title":"🏛️ 레짐 │ 경기·물가·금리","color":0xEFB030,"description":(
+        f"{td_dot} **TIDE {reg['td']}** 경기사이클 │ "
+        f"{inf_dot} **INFERNO {reg['inf']}** 물가환경 │ "
+        f"{cv_dot} **CURVE {reg['cv']}** 수익률곡선\n"
+        f"{dot3(d['DFII10'],1.5,2.0) if d['DFII10'] else'❓'} **DFII10 {f(d['DFII10'],'',2)}%** 실질금리 │ "
+        f"{'🟢' if d['T10Y2Y'] and d['T10Y2Y']>0 else'🔴'} **T10Y2Y {f(d['T10Y2Y'],'',2)}%** 장단기차 │ "
+        f"{dot3(d['SAHM'],0.25,0.30) if d['SAHM'] else'❓'} **SAHM {f(d['SAHM'],'',2)}** 실업판정\n"
+        f"🏦 **2Y {f(d['GS2'],'',2)}%** │ **10Y {f(d['GS10'],'',2)}%** │ "
+        f"{dot3(d['ICSA'],250000,300000) if d['ICSA'] else'❓'} **ICSA {f(d['ICSA'],'',0)}** 실업수당\n\n"
+        f"**그래디언트 분해** ({grd['t']}/100)\n"
+        f"VIX **{grd['vs']}**/25 │ OAS **{grd['os']}**/25 │ MOVE **{grd['ms']}**/25 │ FLOW **{grd['fs']}**/25 │ RR **{grd['rr']}**/15"
+    )}
+
+    # 4️⃣ 유동성 + 글로벌
+    rrp_t=f"{d['RRP']/1e9:.0f}B" if d['RRP'] else"--"
+    e4={"title":"💧 유동성 │ 글로벌 │ 환율","color":0x1DA1F2,"description":(
+        f"{'🟡' if d['RRP'] and d['RRP']>500e9 else'🟢'} **RRP ${rrp_t}** 역레포잔고 │ "
+        f"{momdot(d['HYG_1D'])} **HYG ${f(d['HYG'])}** ({sg(d['HYG_1D'])}) 하이일드 │ "
+        f"{momdot(d['TLT_1D'])} **TLT ${f(d['TLT'])}** ({sg(d['TLT_1D'])}) 장기국채\n"
+        f"{'🟡' if d['KRW'] and d['KRW']>1350 else'🟢'} **원/달러 {f(d['KRW'],dc=0)}원** │ "
+        f"{momdot(d['BTC_1D'])} **BTC ${f(d['BTC'],dc=0)}** ({sg(d['BTC_1D'])}) 위험자산심리\n"
+        f"{momdot(d['S1D'])} **S&P선물 {f(d['ESF'],dc=0)}** │ **나스닥선물 {f(d['NQF'],dc=0)}** 오늘장 방향\n"
+        f"{'🔴' if d['GS_R'] and d['GS_R']>80 else('🟡' if d['GS_R'] and d['GS_R']>70 else'🟢')} **금/은비 {f(d['GS_R'],dc=1)}** 높으면 공포 │ "
+        f"{'🟢' if d['CG_R'] and d['CG_R']>0.20 else('🟡' if d['CG_R'] and d['CG_R']>0.15 else'🔴')} **구리/금비 {f(d['CG_R'],dc=3)}** 높으면 성장"
+    )}
+
+    # 5️⃣ 보유종목 모멘텀 (1M 순위)
+    ranked=[]
+    for tk in TICKERS:
+        h=d["H"].get(tk,{})
+        m1=h.get("1M")
+        ranked.append((tk,h,m1 if m1 is not None else -999))
+    ranked.sort(key=lambda x:x[2],reverse=True)
+    lines=[]
+    for i,(tk,h,m1v) in enumerate(ranked):
+        em=EMOJIS.get(tk,"")
+        p=h.get("p");d1=h.get("1D");m1=h.get("1M");m3=h.get("3M")
+        lines.append(
+            f"**#{i+1}** {em}{tk} ${f(p)} │ "
+            f"{momdot(d1)} 1D {sg(d1)} │ "
+            f"{momdot(m1)} 1M {sg(m1)} │ "
+            f"{momdot(m3)} 3M {sg(m3)}"
+        )
+    e5={"title":"📊 보유종목 모멘텀 (1M 순위)","color":0x3DBB7E,"description":"\n".join(lines)}
+
+    # 6️⃣ SPY + 트리거 + 재진입
+    e6={"title":"📈 SPY │ 트리거 │ 재진입","color":0x3DBB7E,"description":(
+        f"{momdot(d['S1D'])} **SPY ${f(d['SPY'])}** │ 1D **{sg(d['S1D'])}** │ 1W **{sg(d['S1W'])}** │ 1M **{sg(d['S1M'])}**\n"
+        f"{'🟢' if vs200[0]=='+' else'🔴'} vs200MA **{vs200}** │ {'🟢' if vs60[0]=='+' else'🔴'} vs60MA **{vs60}** │ {dot3(d['BRD'],1.08,1.12) if d['BRD'] else'❓'} BREADTH **{f(d['BRD'],dc=3)}**\n"
+        f"{dot(d['b200']<5)} 200MA하회 **{d['b200']}일** │ {dot(d['b60']<12)} 60MA하회 **{d['b60']}일**\n\n"
+        f"{trg['chips']}\n"
+        f"🥇 GLD매도 {'🚫금지' if trg['gld'] else'✅허용'}\n\n"
+        f"**재진입조건** (전부 충족 필수)\n"
+        f"{dot(rv)} VIX<20 **{f(d['VIX'])}** │ {dot(rm)} MOVE<100 **{f(d['MOVE'],dc=0)}** │ {dot(rs)} SAHM<0.30 **{f(d['SAHM'],'',2)}**"
+    )}
+
+    # 7️⃣ 각주
+    e7={"color":0x485070,"description":(
+        "📖 **지표 각주**\n"
+        "▸ **VIX** 공포지수 🟢<30 🟡30~42 🔴42↑ │ **MOVE** 채권변동성 🟢<150 🟡150~190 🔴190↑\n"
+        "▸ **OAS** 신용스프레드 🟢<5.2 🟡5.2~5.8 🔴5.8↑ │ **WTI** 유가 🟢<95 🟡95~120 🔴120↑\n"
+        "▸ **T5YIE** 기대인플레 🟢<2.7 🟡2.7~3.0 🔴3.0↑ │ **DXY** 달러 🟢<100 🟡100~104 🔴104↑\n"
+        "▸ **VVIX** VIX선행 🟢<110 🟡110~130 🔴130↑ │ **DFII10** 실질금리 🟢<1.5 🟡1.5~2.0 🔴2.0↑\n"
+        "▸ **T10Y2Y** 장단기차 🟢양수 🔴역전 │ **SAHM** 실업 🟢<0.25 🟡0.25~0.30 🔴0.30↑\n"
+        "▸ **RRP** 역레포 🟢<500B 🟡500B↑ │ **HYG** 하이일드채권 ↓=신용불안 │ **TLT** 국채 ↑=금리하락\n"
+        "▸ **금/은비** 🟢<70 🟡70~80 🔴80↑(공포) │ **구리/금비** 🟢>0.20(성장) 🔴<0.15(방어)\n"
+        "▸ **BREADTH** 시장폭 🟢<1.08 🟡1.08~1.12 🔴1.12↑(쏠림)\n"
+        "▸ **모멘텀 신호등** 🟢+5%↑ 🟡0~5% 🟠-5~0% 🔴-5%↓"
+    ),"footer":{"text":f"INVICTUS Bot │ {datetime.now(KST).strftime('%H:%M KST')} │ Oracle v2.13"}}
+
+    return[e1,e2,e3,e4,e5,e6,e7]
+
+def main():
+    print("📋 모닝 브리핑 v4 생성 중...")
+    d=fetch();g=calc_gradient(d);r=calc_regime(d,g);t=calc_triggers(d)
+    print(f"  레짐:{r['l']} 경보:{t['stg']}")
+    embeds=build(d,r,g,t)
+    # 뉴스
+    print("  📰 뉴스 수집 중...")
+    hl=fetch_news();print(f"  {len(hl)}개 헤드라인")
+    if hl:
+        tr=translate_news(hl)
+        if tr:embeds.append({"title":"📰 글로벌 경제 뉴스","color":0x1DA1F2,"description":tr,"footer":{"text":"CNBC │ MarketWatch │ Claude 번역"}});print("  ✅ 뉴스 번역 완료")
+        else:print("  ⚠️ 번역 생략")
+    now=datetime.now(KST)
+    send({"content":f"☀️ **INVICTUS 모닝 브리핑** — {now.strftime('%Y-%m-%d %H:%M KST')}","embeds":embeds[:5]})
+    if len(embeds)>5:send({"embeds":embeds[5:]})
+    print("  ✅ 전송 완료")
+
+if __name__=="__main__":main()
