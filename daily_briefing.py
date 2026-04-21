@@ -2,6 +2,11 @@
 """INVICTUS 모닝 브리핑 v4 — 전 지표 신호등 + 모멘텀 순위.
 
 패치 이력:
+    - 2026-04-21 v4.7: 한경 RSS 다중 URL fallback (6개 후보 순차 시도).
+                      RSS 파서 Content-Type 경고 로그.
+    - 2026-04-21 v4.6: 뉴스 3단계 fallback (rich → 단순요약 → 원문).
+                      RSS 파서 Atom 호환·네임스페이스 무시.
+                      로그 [한경]/[외신] 단계별 상세화.
     - 2026-04-21 v4.5: Rich 카드형 한경·외신 통합.
                       외신 3사(CNBC+BBC+Guardian) 교차검증 + 한국어 투자시사.
                       한경도 결론+상세 bullets의 카드형으로 확장.
@@ -998,7 +1003,17 @@ def translate_news(headlines):
 # v4.4 NEW: 한경 RSS 수집·요약
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-HANKYUNG_RSS = "https://www.hankyung.com/feed"
+HANKYUNG_RSS = "https://www.hankyung.com/feed"  # 대표 URL (v4.7: 다중 fallback 사용)
+
+# v4.7: Hankyung RSS가 단일 URL로 실패할 수 있어 다중 후보를 순차 시도
+HANKYUNG_RSS_CANDIDATES = [
+    "https://www.hankyung.com/feed",
+    "https://rss.hankyung.com/feed/economy.xml",
+    "https://rss.hankyung.com/feed/finance.xml",
+    "https://rss.hankyung.com/feed/industry.xml",
+    "https://rss.hankyung.com/feed/it.xml",
+    "https://rss.hankyung.com/feed/all-news.xml",
+]
 
 
 def fetch_hankyung_news():
@@ -1094,32 +1109,128 @@ def _strip_html(text, max_len=500):
     return text
 
 
+def _local_tag(elem):
+    """ElementTree의 namespaced tag에서 local part만 추출 ('{ns}tag' → 'tag')."""
+    if elem is None:
+        return ""
+    t = elem.tag
+    if "}" in t:
+        return t.split("}", 1)[1]
+    return t
+
+
+def _find_child(parent, names):
+    """자식 엘리먼트를 local name 기반으로 찾기 (네임스페이스 무시)."""
+    if parent is None:
+        return None
+    name_set = set(names) if isinstance(names, (list, tuple, set)) else {names}
+    for child in list(parent):
+        if _local_tag(child) in name_set:
+            return child
+    return None
+
+
+def _find_all_children(root, names):
+    """깊이 전체에서 local name 일치하는 엘리먼트 모두 찾기 (ET.iter 재귀)."""
+    name_set = set(names) if isinstance(names, (list, tuple, set)) else {names}
+    results = []
+    for elem in root.iter():
+        if _local_tag(elem) in name_set:
+            results.append(elem)
+    return results
+
+
 def fetch_rss_articles(url, name, max_items=10):
-    """범용 RSS fetch → [{title, description, pubDate, link, source}, ...]."""
+    """범용 RSS/Atom fetch → [{title, description, pubDate, link, source}, ...].
+
+    RSS 2.0의 <item>, Atom의 <entry> 둘 다 지원. 네임스페이스 무시.
+    description이 없으면 summary·content·subtitle·content:encoded 순으로 탐색.
+    v4.7: HTTP 상태·Content-Type·본문 첫 200자 진단 출력.
+    """
     articles = []
     try:
         r = requests.get(url, headers=UA, timeout=10)
+        if not r.ok:
+            ct = r.headers.get("content-type", "?")
+            print(f"[rss:{name}] HTTP {r.status_code} Content-Type={ct}", file=sys.stderr)
+            _report(f"rss:{name}:http", RuntimeError(f"HTTP {r.status_code}"))
+            return articles
+        # 응답이 XML 아닐 경우 진단
+        ct = r.headers.get("content-type", "")
+        if "xml" not in ct.lower() and "rss" not in ct.lower() and "atom" not in ct.lower():
+            sample = r.text[:200].replace("\n", " ")
+            print(
+                f"[rss:{name}] 경고: Content-Type={ct!r} (XML 아님). "
+                f"본문 첫 200자: {sample!r}",
+                file=sys.stderr,
+            )
         root = ET.fromstring(r.content)
-        for item in root.findall(".//item")[:max_items]:
-            t = item.find("title")
-            d = item.find("description")
-            pd = item.find("pubDate")
-            ln = item.find("link")
+
+        # RSS 2.0 <item> 우선, 없으면 Atom <entry>
+        items = _find_all_children(root, ["item", "entry"])[:max_items]
+
+        for item in items:
+            t = _find_child(item, ["title"])
+            d = _find_child(item, [
+                "description", "summary", "content", "subtitle",
+            ])
+            # Atom content는 text 대신 html inline; RSS에는 content:encoded
+            if d is None:
+                d = _find_child(item, ["encoded"])  # content:encoded local name
+            pd = _find_child(item, ["pubDate", "published", "updated", "date"])
+            ln = _find_child(item, ["link"])
+
+            # Atom link는 href 속성에 URL
+            link_text = ""
+            if ln is not None:
+                if ln.text and ln.text.strip():
+                    link_text = ln.text.strip()
+                elif ln.get("href"):
+                    link_text = ln.get("href", "").strip()
+
+            title_text = ""
+            if t is not None and t.text:
+                title_text = t.text.strip()
+
+            desc_text = ""
+            if d is not None and d.text:
+                desc_text = _strip_html(d.text)
+
+            pubdate_text = ""
+            if pd is not None and pd.text:
+                pubdate_text = pd.text.strip()
+
+            if not title_text:
+                continue  # 제목 없는 항목 skip
+
             articles.append({
-                "title": (t.text or "").strip() if t is not None else "",
-                "description": _strip_html(d.text if d is not None else ""),
-                "pubDate": (pd.text or "").strip() if pd is not None else "",
-                "link": (ln.text or "").strip() if ln is not None else "",
+                "title": title_text,
+                "description": desc_text,
+                "pubDate": pubdate_text,
+                "link": link_text,
                 "source": name,
             })
     except Exception as e:
         _report(f"rss:{name}", e)
+        print(f"[rss:{name}] 예외: {type(e).__name__}: {e}", file=sys.stderr)
     return articles
 
 
 def fetch_hankyung_articles():
-    """한경 RSS에서 article 수집 (제목+설명)."""
-    return fetch_rss_articles(HANKYUNG_RSS, "한국경제", max_items=20)
+    """한경 RSS 다중 URL 순차 시도, 첫 성공 URL의 article 반환.
+
+    v4.7: 단일 URL 실패 대비. 각 URL에서 진단 로그 출력.
+    """
+    for url in HANKYUNG_RSS_CANDIDATES:
+        print(f"   [한경] 시도: {url}")
+        articles = fetch_rss_articles(url, "한국경제", max_items=20)
+        if articles:
+            print(f"   [한경] 성공: {url} → {len(articles)}개")
+            return articles
+        else:
+            print(f"   [한경] 실패: 0개")
+    print("   [한경] ❌ 모든 URL 후보 실패")
+    return []
 
 
 def fetch_global_articles():
@@ -1287,6 +1398,25 @@ def hankyung_items_to_embeds(items):
             "footer": {"text": f"한국경제 · {category}"},
         })
     return embeds
+
+
+def simple_headlines_embed(headlines, title, source_label):
+    """최후 fallback: 헤드라인을 그대로 bullet 목록 embed로."""
+    if not headlines:
+        return None
+    # 최대 10개, 각 200자 이하로 자르기
+    limited = [h[:200] for h in headlines[:10] if h.strip()]
+    if not limited:
+        return None
+    desc = "\n".join(f"▸ {h}" for h in limited)
+    if len(desc) > 4000:
+        desc = desc[:3997] + "..."
+    return {
+        "title": title,
+        "color": 0x95A5A6,
+        "description": desc,
+        "footer": {"text": f"{source_label} · (요약 생성 실패, 원문 헤드라인)"},
+    }
 
 
 def global_items_to_embeds(items):
@@ -1598,50 +1728,129 @@ def main():
     if len(embeds) > 5:
         ok_core2 = send({"embeds": embeds[5:]})
 
-    # ━━━ Rich 한경 (v4.5) ━━━
-    print(" 📰 한경 rich briefing 생성 중...")
+    # ━━━ 한경 (v4.6: 3단계 fallback) ━━━
+    print(" 📰 [한경] RSS 수집 시작...")
     hk_articles = fetch_hankyung_articles()
-    print(f"   한경 articles 수집: {len(hk_articles)}")
-    hk_items = generate_rich_briefing(hk_articles, "hankyung") if hk_articles else None
+    print(f"   [한경] articles 수집: {len(hk_articles)}개")
 
-    if hk_items:
-        hk_embeds = hankyung_items_to_embeds(hk_items)
-        if hk_embeds:
-            ok_hk = send({
-                "content": (
-                    f"🇰🇷 **한국경제 모닝 브리핑** — {now.strftime('%Y-%m-%d (%a)')}\n"
-                    f"📂 카테고리별 주요 이슈 ({len(hk_embeds)}건)"
-                ),
-                "embeds": hk_embeds[:10],
-            })
-            print(f"   한경 embed 전송: {'ok' if ok_hk else 'fail'} ({len(hk_embeds)}개)")
-        else:
-            print("   ⚠️ 한경 embed 빈 목록")
+    hk_sent = False
+    if hk_articles:
+        # Level 1: rich JSON 카드
+        print("   [한경] Level 1: rich JSON 시도...")
+        hk_items = generate_rich_briefing(hk_articles, "hankyung")
+        if hk_items:
+            hk_embeds = hankyung_items_to_embeds(hk_items)
+            if hk_embeds:
+                ok_hk = send({
+                    "content": (
+                        f"🇰🇷 **한국경제 모닝 브리핑** — {now.strftime('%Y-%m-%d (%a)')}\n"
+                        f"📂 카테고리별 주요 이슈 ({len(hk_embeds)}건)"
+                    ),
+                    "embeds": hk_embeds[:10],
+                })
+                print(f"   [한경] Level 1 전송: {'ok' if ok_hk else 'fail'} ({len(hk_embeds)}개)")
+                hk_sent = ok_hk
+
+        # Level 2: v4.4 단순 요약 (rich 실패 시)
+        if not hk_sent:
+            print("   [한경] Level 2: 단순 요약 fallback 시도...")
+            titles = [a.get("title", "") for a in hk_articles if a.get("title")]
+            hk_summary = summarize_hankyung(titles[:15])
+            if hk_summary:
+                ok_hk = send({
+                    "content": f"🇰🇷 **한국경제 모닝 브리핑** — {now.strftime('%Y-%m-%d (%a)')}",
+                    "embeds": [{
+                        "title": "📰 한국경제 주요 뉴스 (요약)",
+                        "color": 0x3498DB,
+                        "description": hk_summary,
+                        "footer": {"text": "한국경제 · Claude 요약 (단순)"},
+                    }],
+                })
+                print(f"   [한경] Level 2 전송: {'ok' if ok_hk else 'fail'}")
+                hk_sent = ok_hk
+
+        # Level 3: 원문 헤드라인 (Claude 전체 실패 시)
+        if not hk_sent:
+            print("   [한경] Level 3: 원문 헤드라인 fallback 시도...")
+            titles = [a.get("title", "") for a in hk_articles if a.get("title")]
+            fallback_embed = simple_headlines_embed(
+                titles, "🇰🇷 한국경제 헤드라인 (원문)", "한국경제 RSS"
+            )
+            if fallback_embed:
+                ok_hk = send({"embeds": [fallback_embed]})
+                print(f"   [한경] Level 3 전송: {'ok' if ok_hk else 'fail'}")
+                hk_sent = ok_hk
     else:
-        print("   ⚠️ 한경 rich briefing 생성 실패, 스킵")
+        print("   [한경] ⚠️ RSS 수집 0건 → 전송 스킵 (Hankyung RSS URL·네트워크 확인 필요)")
 
-    # ━━━ Rich 외신 (v4.5) ━━━
-    print(" 📰 외신 rich briefing 생성 중...")
+    if not hk_sent:
+        print(" ❌ [한경] 3단계 전부 실패. Actions 로그 확인 필요.")
+
+    # ━━━ 외신 (v4.6: 3단계 fallback) ━━━
+    print(" 📰 [외신] CNBC+BBC+Guardian RSS 수집 시작...")
     gl_articles = fetch_global_articles()
-    print(f"   외신 articles 수집: {len(gl_articles)} (CNBC+BBC+Guardian)")
-    gl_items = generate_rich_briefing(gl_articles, "global") if gl_articles else None
+    # 출처별 개수 집계
+    by_source = {}
+    for a in gl_articles:
+        s = a.get("source", "?")
+        by_source[s] = by_source.get(s, 0) + 1
+    print(f"   [외신] 총 {len(gl_articles)}개 (출처별: {dict(by_source)})")
 
-    if gl_items:
-        gl_embeds = global_items_to_embeds(gl_items)
-        if gl_embeds:
-            ok_gl = send({
-                "content": (
-                    f"🌐 **외신 종합 모닝 브리핑** — {now.strftime('%Y-%m-%d (%a)')}\n"
-                    f"🔴 지정학 · 💼 기업·매크로 · 🤖 AI/반도체 · 🏛️ 통화 "
-                    f"(CNBC·BBC·Guardian 3개 교차, {len(gl_embeds)}건)"
-                ),
-                "embeds": gl_embeds[:10],
-            })
-            print(f"   외신 embed 전송: {'ok' if ok_gl else 'fail'} ({len(gl_embeds)}개)")
-        else:
-            print("   ⚠️ 외신 embed 빈 목록")
+    gl_sent = False
+    if gl_articles:
+        # Level 1: rich JSON 카드
+        print("   [외신] Level 1: rich JSON 시도...")
+        gl_items = generate_rich_briefing(gl_articles, "global")
+        if gl_items:
+            gl_embeds = global_items_to_embeds(gl_items)
+            if gl_embeds:
+                ok_gl = send({
+                    "content": (
+                        f"🌐 **외신 종합 모닝 브리핑** — {now.strftime('%Y-%m-%d (%a)')}\n"
+                        f"🔴 지정학 · 💼 기업·매크로 · 🤖 AI/반도체 · 🏛️ 통화 "
+                        f"(CNBC·BBC·Guardian 3개 교차, {len(gl_embeds)}건)"
+                    ),
+                    "embeds": gl_embeds[:10],
+                })
+                print(f"   [외신] Level 1 전송: {'ok' if ok_gl else 'fail'} ({len(gl_embeds)}개)")
+                gl_sent = ok_gl
+
+        # Level 2: v4.4 단순 번역 요약
+        if not gl_sent:
+            print("   [외신] Level 2: 단순 번역 요약 fallback 시도...")
+            titles = [f"[{a.get('source','?')}] {a.get('title','')}"
+                      for a in gl_articles if a.get("title")]
+            gl_summary = translate_news(titles[:15])
+            if gl_summary:
+                ok_gl = send({
+                    "content": f"🌐 **외신 종합 모닝 브리핑** — {now.strftime('%Y-%m-%d (%a)')}",
+                    "embeds": [{
+                        "title": "📰 외신 주요 뉴스 (요약)",
+                        "color": 0x5B9CF6,
+                        "description": gl_summary,
+                        "footer": {"text": "CNBC · BBC · Guardian · Claude 번역 (단순)"},
+                    }],
+                })
+                print(f"   [외신] Level 2 전송: {'ok' if ok_gl else 'fail'}")
+                gl_sent = ok_gl
+
+        # Level 3: 원문 헤드라인
+        if not gl_sent:
+            print("   [외신] Level 3: 원문 헤드라인 fallback 시도...")
+            titles = [f"[{a.get('source','?')}] {a.get('title','')}"
+                      for a in gl_articles if a.get("title")]
+            fallback_embed = simple_headlines_embed(
+                titles, "🌐 외신 헤드라인 (원문)", "CNBC · BBC · Guardian"
+            )
+            if fallback_embed:
+                ok_gl = send({"embeds": [fallback_embed]})
+                print(f"   [외신] Level 3 전송: {'ok' if ok_gl else 'fail'}")
+                gl_sent = ok_gl
     else:
-        print("   ⚠️ 외신 rich briefing 생성 실패, 스킵")
+        print("   [외신] ⚠️ RSS 수집 0건 → 전송 스킵 (모든 외신 RSS URL·네트워크 확인 필요)")
+
+    if not gl_sent:
+        print(" ❌ [외신] 3단계 전부 실패. Actions 로그 확인 필요.")
 
     # 코어 전송 결과 요약 (뉴스는 fail이어도 본 브리핑 보존)
     if ok1 and ok_core2:
