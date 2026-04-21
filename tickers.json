@@ -1,0 +1,34 @@
+{
+  "tickers": [
+    "GLD", "SMH", "EWZ", "XLE", "SLV",
+    "PAVE", "COPX", "XLU", "VEA", "QQQM",
+    "IWM", "XLF", "XLV", "INDA", "ITA",
+    "CIBR", "NLR", "CQQQ", "VNM", "TLT"
+  ],
+  "emojis": {
+    "GLD": "🥇",
+    "SMH": "📱",
+    "EWZ": "🇧🇷",
+    "XLE": "🛢️",
+    "SLV": "🥈",
+    "PAVE": "🏗️",
+    "COPX": "🟤",
+    "XLU": "⚡",
+    "VEA": "🌍",
+    "QQQM": "💻",
+    "IWM": "🏢",
+    "XLF": "🏦",
+    "XLV": "🏥",
+    "INDA": "🇮🇳",
+    "ITA": "✈️",
+    "CIBR": "🔒",
+    "NLR": "☢️",
+    "CQQQ": "🇨🇳",
+    "VNM": "🇻🇳",
+    "TLT": "📉"
+  },
+  "_meta": {
+    "source": "invictus-monitor patch v1 (2026-04-21)",
+    "note": "변경 시 이 파일만 수정. daily_briefing.py와 monitor.py는 자동 로드."
+  }
+}
