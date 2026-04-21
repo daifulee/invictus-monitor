@@ -1,3 +1,46 @@
+# invictus-monitor 패치 v6 — 2026-04-21 (v5.0 뉴스 제거)
+
+## v6 변경 요약 — Commander 결정: 뉴스 기능 전체 제거
+
+**이유:** Anthropic API 크레딧 별도 과금 + Max 구독 미포함 확인. 뉴스 기능 비유지.
+
+**제거된 구성요소 (24건):**
+
+| 구분 | 이름 |
+|---|---|
+| 함수 (16) | `fetch_news`, `translate_news`, `fetch_hankyung_news`, `summarize_hankyung`, `fetch_rss_articles`, `fetch_hankyung_articles`, `fetch_global_articles`, `parse_claude_json`, `generate_rich_briefing`, `hankyung_items_to_embeds`, `global_items_to_embeds`, `simple_headlines_embed`, `_strip_html`, `_local_tag`, `_find_child`, `_find_all_children` |
+| 상수 (6) | `HANKYUNG_RSS`, `HANKYUNG_RSS_FEEDS`, `GLOBAL_RSS_FEEDS`, `HANKYUNG_COLOR_MAP`, `GLOBAL_COLOR_MAP`, `_HANKYUNG_PROMPT`, `_GLOBAL_PROMPT` |
+| 환경변수 | `ANTHROPIC_API_KEY` (workflow yml에서도 제거) |
+| import | `xml.etree.ElementTree`, `re` |
+
+**유지되는 코어 기능:**
+- e1 핵심 요약 + 실효공격 30일 스파크라인
+- e2 핵심 센서 (VIX·MOVE·OAS·WTI·T5YIE·DXY·VVIX·MR·VV)
+- e3 레짐 + TIER2 + 그래디언트 분해
+- e4 유동성·글로벌·환율
+- e5 Legio Top10 (종가·1D·RSI·52주 형식)
+- e6 SPY·트리거·재진입·진입게이트
+- e7 각주
+
+**파일 크기 변화:**
+- v4.8: 1,745줄
+- **v5.0: 1,214줄** (약 500줄 감소)
+
+**메시지 발송 구조:**
+- 이전: 4개 메시지 (코어 2 + 한경 1 + 외신 1)
+- **v5.0: 2개 메시지** (코어만, `embeds[:5]` + `embeds[5:]`)
+
+**Anthropic API 의존 제거:**
+- 호출 함수 0개
+- 월 비용 $0
+- 크레딧 충전 불필요
+- GitHub Secret `ANTHROPIC_API_KEY` 삭제 가능 (선택사항)
+
+**후속 권고:**
+1. GitHub 레포의 `ANTHROPIC_API_KEY` Secret 삭제 (보안상)
+2. Discord 서버의 Hankyoungbot·GlobalnewsBot 상태는 Commander 재량
+   - INVICTUS도 뉴스를 안 주므로, 외부 뉴스 채널을 별도 봇으로 유지할 수 있음
+
 # invictus-monitor 패치 v5 — 2026-04-21
 
 Commander 승인 하에 누적된 패치:
