@@ -2,6 +2,9 @@
 """INVICTUS 모닝 브리핑 v4 — 전 지표 신호등 + 모멘텀 순위.
 
 패치 이력:
+    - 2026-04-21 v4.8: 한경 RSS 정확한 URL 구조 확인 (Commander 스크린샷).
+                      6개 카테고리 (경제·증권·국제·정치·IT·부동산) 다중 집계.
+                      Sequential fallback → Multi-feed aggregation.
     - 2026-04-21 v4.7: 한경 RSS 다중 URL fallback (6개 후보 순차 시도).
                       RSS 파서 Content-Type 경고 로그.
     - 2026-04-21 v4.6: 뉴스 3단계 fallback (rich → 단순요약 → 원문).
@@ -1003,16 +1006,17 @@ def translate_news(headlines):
 # v4.4 NEW: 한경 RSS 수집·요약
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-HANKYUNG_RSS = "https://www.hankyung.com/feed"  # 대표 URL (v4.7: 다중 fallback 사용)
+HANKYUNG_RSS = "https://www.hankyung.com/feed/economy"  # summarize_hankyung legacy용
 
-# v4.7: Hankyung RSS가 단일 URL로 실패할 수 있어 다중 후보를 순차 시도
-HANKYUNG_RSS_CANDIDATES = [
-    "https://www.hankyung.com/feed",
-    "https://rss.hankyung.com/feed/economy.xml",
-    "https://rss.hankyung.com/feed/finance.xml",
-    "https://rss.hankyung.com/feed/industry.xml",
-    "https://rss.hankyung.com/feed/it.xml",
-    "https://rss.hankyung.com/feed/all-news.xml",
+# v4.8: 한경 RSS 실제 URL 구조 확인 (Commander 스크린샷, 2026-04-21)
+# https://www.hankyung.com/feed/<카테고리> 패턴. 다중 피드에서 집계 후 Claude가 5개 선별.
+HANKYUNG_RSS_FEEDS = [
+    ("https://www.hankyung.com/feed/economy", "한경경제"),
+    ("https://www.hankyung.com/feed/finance", "한경증권"),
+    ("https://www.hankyung.com/feed/international", "한경국제"),
+    ("https://www.hankyung.com/feed/politics", "한경정치"),
+    ("https://www.hankyung.com/feed/it", "한경IT"),
+    ("https://www.hankyung.com/feed/realestate", "한경부동산"),
 ]
 
 
@@ -1217,20 +1221,26 @@ def fetch_rss_articles(url, name, max_items=10):
 
 
 def fetch_hankyung_articles():
-    """한경 RSS 다중 URL 순차 시도, 첫 성공 URL의 article 반환.
+    """한경 다중 카테고리 RSS 집계.
 
-    v4.7: 단일 URL 실패 대비. 각 URL에서 진단 로그 출력.
+    v4.8: Commander 확인된 URL 패턴 `https://www.hankyung.com/feed/<cat>` 사용.
+    6개 카테고리(경제·증권·국제·정치·IT·부동산) 전부 수집 후 Claude가 5개 선별.
+    연예·스포츠·생활 등 투자 무관 카테고리는 제외.
     """
-    for url in HANKYUNG_RSS_CANDIDATES:
-        print(f"   [한경] 시도: {url}")
-        articles = fetch_rss_articles(url, "한국경제", max_items=20)
+    all_articles = []
+    for url, name in HANKYUNG_RSS_FEEDS:
+        print(f"   [한경] {name}: {url}")
+        articles = fetch_rss_articles(url, name, max_items=8)
         if articles:
-            print(f"   [한경] 성공: {url} → {len(articles)}개")
-            return articles
+            print(f"     → {len(articles)}개")
+            all_articles.extend(articles)
         else:
-            print(f"   [한경] 실패: 0개")
-    print("   [한경] ❌ 모든 URL 후보 실패")
-    return []
+            print(f"     → 0개 (실패)")
+    if all_articles:
+        print(f"   [한경] 총 수집: {len(all_articles)}개 ({len(HANKYUNG_RSS_FEEDS)}개 카테고리)")
+    else:
+        print(f"   [한경] ❌ 모든 피드 실패")
+    return all_articles
 
 
 def fetch_global_articles():
