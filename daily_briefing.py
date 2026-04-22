@@ -825,7 +825,7 @@ def main():
         if qe:embeds.append(qe);print(f"  📜 명언 3개 로드 (풀 {len(quotes_all)}개)")
     now=datetime.now(KST)
     # 자동 5개씩 분할 전송 (Discord 10 embed 한계 대응 + INVICTUS+SOLIDUS 통합 12개 대응)
-    header=f"🛡️ **INVICTUS 모닝 리포트** ☕\n{now.strftime('%Y-%m-%d %H:%M KST')}"
+    header=f"# 🛡️ INVICTUS 모닝 리포트 ☕\n## {now.strftime('%Y-%m-%d %H:%M KST')}"
     for i in range(0,len(embeds),5):
         payload={"embeds":embeds[i:i+5]}
         if i==0:payload["content"]=header
