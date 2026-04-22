@@ -1,0 +1,1687 @@
+{
+  "version": "1.0",
+  "count": 279,
+  "updated": "2026-04-22",
+  "license": "public-domain / fair-use quotations",
+  "categories": {
+    "투자": 60,
+    "경영": 65,
+    "자기성찰": 154
+  },
+  "quotes": [
+    {
+      "ko": "가격은 당신이 지불하는 것이고, 가치는 당신이 얻는 것이다.",
+      "en": "Price is what you pay. Value is what you get.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "남들이 탐욕스러울 때 두려워하고, 남들이 두려워할 때 탐욕스러워져라.",
+      "en": "Be fearful when others are greedy, and greedy when others are fearful.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "규칙 1번: 돈을 잃지 마라. 규칙 2번: 규칙 1번을 잊지 마라.",
+      "en": "Rule No. 1: Never lose money. Rule No. 2: Never forget rule No. 1.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "위험은 당신이 무엇을 하는지 모르는 데서 온다.",
+      "en": "Risk comes from not knowing what you're doing.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "좋은 회사를 적정한 가격에 사는 것이, 그저 그런 회사를 싸게 사는 것보다 훨씬 낫다.",
+      "en": "It's far better to buy a wonderful company at a fair price than a fair company at a wonderful price.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "가장 중요한 투자는 자기 자신에게 하는 것이다.",
+      "en": "The most important investment you can make is in yourself.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "10년 동안 보유할 의향이 없다면, 10분도 보유할 생각을 말라.",
+      "en": "If you aren't willing to own a stock for ten years, don't even think about owning it for ten minutes.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "우리의 가장 좋아하는 보유 기간은 영원이다.",
+      "en": "Our favorite holding period is forever.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "누군가 오늘 그늘에 앉아 있는 이유는, 오래 전에 누군가 나무를 심었기 때문이다.",
+      "en": "Someone's sitting in the shade today because someone planted a tree a long time ago.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "주식시장은 조급한 자의 돈이 참을성 있는 자에게로 이동하는 장치다.",
+      "en": "The stock market is a device for transferring money from the impatient to the patient.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "큰 돈은 사고 파는 데 있는 것이 아니라 기다림에 있다.",
+      "en": "The big money is not in the buying and selling, but in the waiting.",
+      "author": "Charlie Munger",
+      "tag": "투자"
+    },
+    {
+      "ko": "거꾸로 생각하라, 항상 거꾸로.",
+      "en": "Invert, always invert.",
+      "author": "Charlie Munger",
+      "tag": "투자"
+    },
+    {
+      "ko": "당신의 아이디어에 대한 반대편 주장을 당신보다 잘할 수 없다면, 당신은 그 주제에 대해 의견을 가질 자격이 없다.",
+      "en": "You are not entitled to an opinion unless you can state the arguments against your position better than those who oppose you.",
+      "author": "Charlie Munger",
+      "tag": "투자"
+    },
+    {
+      "ko": "지혜의 큰 부분은 무엇을 피해야 하는지 아는 것이다.",
+      "en": "A big part of wisdom is knowing what to avoid.",
+      "author": "Charlie Munger",
+      "tag": "투자"
+    },
+    {
+      "ko": "천천히 부자가 되는 법은 간단하다. 하지만 빨리 부자가 되려는 유혹을 이기는 건 쉽지 않다.",
+      "en": "It's not supposed to be easy. Anyone who finds it easy is stupid.",
+      "author": "Charlie Munger",
+      "tag": "투자"
+    },
+    {
+      "ko": "좋은 기업 몇 개만 찾으면 된다. 그리고는 그냥 엉덩이를 붙이고 앉아 있어라.",
+      "en": "The trick is, when there is nothing to do, do nothing.",
+      "author": "Charlie Munger",
+      "tag": "투자"
+    },
+    {
+      "ko": "안전 마진 없이는 투자가 아니라 투기다.",
+      "en": "The essence of investment management is the management of risks, not the management of returns.",
+      "author": "Benjamin Graham",
+      "tag": "투자"
+    },
+    {
+      "ko": "투자자의 가장 큰 적은 자기 자신이다.",
+      "en": "The investor's chief problem — and even his worst enemy — is likely to be himself.",
+      "author": "Benjamin Graham",
+      "tag": "투자"
+    },
+    {
+      "ko": "시장은 단기적으로는 투표 기계이지만, 장기적으로는 저울이다.",
+      "en": "In the short run, the market is a voting machine, but in the long run, it is a weighing machine.",
+      "author": "Benjamin Graham",
+      "tag": "투자"
+    },
+    {
+      "ko": "현명한 투자자는 낙관론자에게 팔고 비관론자에게 산다.",
+      "en": "The intelligent investor is a realist who sells to optimists and buys from pessimists.",
+      "author": "Benjamin Graham",
+      "tag": "투자"
+    },
+    {
+      "ko": "당신이 이해하지 못하는 것에는 투자하지 마라.",
+      "en": "Know what you own, and know why you own it.",
+      "author": "Peter Lynch",
+      "tag": "투자"
+    },
+    {
+      "ko": "주식 시장에서 돈을 버는 핵심은 겁먹고 빠져나가지 않는 것이다.",
+      "en": "The real key to making money in stocks is not to get scared out of them.",
+      "author": "Peter Lynch",
+      "tag": "투자"
+    },
+    {
+      "ko": "조정을 예측하고 대비하다가 잃은 돈이, 실제 조정으로 잃은 돈보다 훨씬 많다.",
+      "en": "Far more money has been lost by investors preparing for corrections than has been lost in corrections themselves.",
+      "author": "Peter Lynch",
+      "tag": "투자"
+    },
+    {
+      "ko": "예측할 수 없다. 하지만 대비할 수는 있다.",
+      "en": "You can't predict. You can prepare.",
+      "author": "Howard Marks",
+      "tag": "투자"
+    },
+    {
+      "ko": "투자의 가장 큰 역설: 리스크가 가장 낮아 보일 때가 실제로는 가장 높고, 가장 높아 보일 때가 가장 낮다.",
+      "en": "The greatest paradox of investing is that risk is lowest when everyone believes there is no risk.",
+      "author": "Howard Marks",
+      "tag": "투자"
+    },
+    {
+      "ko": "2등 수준의 사고로는 평균 이상의 수익을 낼 수 없다.",
+      "en": "To outperform the average investor, you have to have second-level thinking.",
+      "author": "Howard Marks",
+      "tag": "투자"
+    },
+    {
+      "ko": "수정 구슬로 살아가는 자는 깨진 유리를 먹게 된다.",
+      "en": "He who lives by the crystal ball will eat shattered glass.",
+      "author": "Ray Dalio",
+      "tag": "투자"
+    },
+    {
+      "ko": "고통 + 성찰 = 성장.",
+      "en": "Pain + Reflection = Progress.",
+      "author": "Ray Dalio",
+      "tag": "투자"
+    },
+    {
+      "ko": "당신이 옳기를 원한다면 적게 걸어라. 많이 배우고 싶다면, 크게 걸어라.",
+      "en": "He who is not courageous enough to take risks will accomplish nothing in life.",
+      "author": "Ray Dalio",
+      "tag": "투자"
+    },
+    {
+      "ko": "분산은 투자에서 유일한 공짜 점심이다.",
+      "en": "Diversification is the only free lunch in investing.",
+      "author": "Ray Dalio",
+      "tag": "투자"
+    },
+    {
+      "ko": "시장은 당신이 지탱할 수 있는 것보다 더 오래 비이성적일 수 있다.",
+      "en": "Markets can remain irrational longer than you can remain solvent.",
+      "author": "John Maynard Keynes",
+      "tag": "투자"
+    },
+    {
+      "ko": "장기적으로 우리 모두는 죽는다.",
+      "en": "In the long run we are all dead.",
+      "author": "John Maynard Keynes",
+      "tag": "투자"
+    },
+    {
+      "ko": "틀린 것보다 대체로 맞는 것이 낫다.",
+      "en": "It is better to be roughly right than precisely wrong.",
+      "author": "John Maynard Keynes",
+      "tag": "투자"
+    },
+    {
+      "ko": "옳으냐 틀리냐가 중요한 게 아니라, 옳을 때 얼마를 벌고 틀릴 때 얼마를 잃느냐가 중요하다.",
+      "en": "It's not whether you're right or wrong that's important, but how much money you make when you're right and how much you lose when you're wrong.",
+      "author": "George Soros",
+      "tag": "투자"
+    },
+    {
+      "ko": "내가 부자가 된 것은 내가 틀렸을 때를 알고 있기 때문이다.",
+      "en": "I'm only rich because I know when I'm wrong.",
+      "author": "George Soros",
+      "tag": "투자"
+    },
+    {
+      "ko": "가장 해로운 세 가지 중독은 헤로인, 탄수화물, 월급이다.",
+      "en": "The three most harmful addictions are heroin, carbohydrates, and a monthly salary.",
+      "author": "Nassim Taleb",
+      "tag": "투자"
+    },
+    {
+      "ko": "운이 좋을 뿐인 것을 스킬로 착각하지 마라.",
+      "en": "Don't mistake what happened with luck for skill.",
+      "author": "Nassim Taleb",
+      "tag": "투자"
+    },
+    {
+      "ko": "작은 확률의 큰 사건이 세상을 지배한다.",
+      "en": "Rare events dominate the history of the world.",
+      "author": "Nassim Taleb",
+      "tag": "투자"
+    },
+    {
+      "ko": "건초더미에서 바늘을 찾지 마라. 건초더미를 통째로 사라.",
+      "en": "Don't look for the needle in the haystack. Just buy the haystack!",
+      "author": "John Bogle",
+      "tag": "투자"
+    },
+    {
+      "ko": "시간이 당신의 친구이고, 충동이 당신의 적이다.",
+      "en": "Time is your friend; impulse is your enemy.",
+      "author": "John Bogle",
+      "tag": "투자"
+    },
+    {
+      "ko": "투자의 성공은 단순함에서 온다.",
+      "en": "Simplicity is the master key to financial success.",
+      "author": "John Bogle",
+      "tag": "투자"
+    },
+    {
+      "ko": "약세장은 주식을 진짜 주인에게 돌려주는 시기다.",
+      "en": "Bear markets are when stocks return to their rightful owners.",
+      "author": "John Templeton",
+      "tag": "투자"
+    },
+    {
+      "ko": "이번엔 다르다는 말이 투자 역사에서 가장 비싼 네 단어다.",
+      "en": "The four most dangerous words in investing are: 'This time it's different.'",
+      "author": "John Templeton",
+      "tag": "투자"
+    },
+    {
+      "ko": "강세장은 비관 속에서 태어나고, 회의 속에서 자라며, 낙관 속에서 성숙해, 희열 속에서 죽는다.",
+      "en": "Bull markets are born on pessimism, grow on skepticism, mature on optimism, and die on euphoria.",
+      "author": "John Templeton",
+      "tag": "투자"
+    },
+    {
+      "ko": "성공적 투자는 배심원이 만장일치일 때를 피하는 것이다.",
+      "en": "The most common cause of low prices is pessimism.",
+      "author": "John Templeton",
+      "tag": "투자"
+    },
+    {
+      "ko": "투기와 투자의 차이: 투자는 위험에 대한 수익률을 고려하고, 투기는 가격 변동만 본다.",
+      "en": "An investment operation is one which, upon thorough analysis, promises safety of principal and an adequate return.",
+      "author": "Benjamin Graham",
+      "tag": "투자"
+    },
+    {
+      "ko": "손실을 감당할 준비가 되어 있는지만큼, 당신의 자신감을 정확히 말해주는 것은 없다.",
+      "en": "The most dangerous risk is the risk you don't know you're taking.",
+      "author": "Seth Klarman",
+      "tag": "투자"
+    },
+    {
+      "ko": "가치 투자자는 충분한 안전 마진이 있을 때만 산다.",
+      "en": "Value investing is at its core the marriage of a contrarian streak and a calculator.",
+      "author": "Seth Klarman",
+      "tag": "투자"
+    },
+    {
+      "ko": "시장에서 살아남는 것이 수익률을 내는 것보다 우선이다.",
+      "en": "The first rule is not to lose. The second rule is not to forget the first rule.",
+      "author": "Paul Tudor Jones",
+      "tag": "투자"
+    },
+    {
+      "ko": "나는 황소도 곰도 되지 않는다. 나는 자유로운 인간이다.",
+      "en": "If you don't stay with your winners, you are not going to be able to pay for the losers.",
+      "author": "Stanley Druckenmiller",
+      "tag": "투자"
+    },
+    {
+      "ko": "기업가 정신은 무(無)에서 유(有)를 만드는 기술이다.",
+      "en": "Entrepreneurship is the pursuit of opportunity beyond resources controlled.",
+      "author": "Howard Stevenson",
+      "tag": "경영"
+    },
+    {
+      "ko": "관리할 수 없는 것은 측정할 수 없다. 하지만 관리된다고 해서 다 중요한 것은 아니다.",
+      "en": "What's measured improves.",
+      "author": "Peter Drucker",
+      "tag": "경영"
+    },
+    {
+      "ko": "문화는 전략을 아침식사로 먹는다.",
+      "en": "Culture eats strategy for breakfast.",
+      "author": "Peter Drucker",
+      "tag": "경영"
+    },
+    {
+      "ko": "미래를 예측하는 가장 좋은 방법은 그것을 만드는 것이다.",
+      "en": "The best way to predict the future is to create it.",
+      "author": "Peter Drucker",
+      "tag": "경영"
+    },
+    {
+      "ko": "효율성은 일을 올바르게 하는 것이고, 효과성은 올바른 일을 하는 것이다.",
+      "en": "Efficiency is doing things right; effectiveness is doing the right things.",
+      "author": "Peter Drucker",
+      "tag": "경영"
+    },
+    {
+      "ko": "기업의 목적은 단 하나, 고객을 창출하는 것이다.",
+      "en": "The purpose of business is to create and keep a customer.",
+      "author": "Peter Drucker",
+      "tag": "경영"
+    },
+    {
+      "ko": "계획은 아무것도 아니지만, 계획하는 것은 모든 것이다.",
+      "en": "Plans are only good intentions unless they immediately degenerate into hard work.",
+      "author": "Peter Drucker",
+      "tag": "경영"
+    },
+    {
+      "ko": "혁신은 리더와 추종자를 구분한다.",
+      "en": "Innovation distinguishes between a leader and a follower.",
+      "author": "Steve Jobs",
+      "tag": "경영"
+    },
+    {
+      "ko": "사람들이 원한다고 말하는 것을 주지 말고, 그들이 미처 알기 전에 필요로 할 것을 줘라.",
+      "en": "People don't know what they want until you show it to them.",
+      "author": "Steve Jobs",
+      "tag": "경영"
+    },
+    {
+      "ko": "단순함은 궁극의 정교함이다.",
+      "en": "Simplicity is the ultimate sophistication.",
+      "author": "Steve Jobs",
+      "tag": "경영"
+    },
+    {
+      "ko": "위대한 일을 하는 유일한 방법은 당신이 하는 일을 사랑하는 것이다.",
+      "en": "The only way to do great work is to love what you do.",
+      "author": "Steve Jobs",
+      "tag": "경영"
+    },
+    {
+      "ko": "당신의 시간은 한정되어 있으니, 다른 사람의 삶을 사느라 낭비하지 마라.",
+      "en": "Your time is limited, so don't waste it living someone else's life.",
+      "author": "Steve Jobs",
+      "tag": "경영"
+    },
+    {
+      "ko": "당신의 브랜드는 당신이 방에 없을 때 사람들이 당신에 대해 하는 말이다.",
+      "en": "Your brand is what other people say about you when you're not in the room.",
+      "author": "Jeff Bezos",
+      "tag": "경영"
+    },
+    {
+      "ko": "Day 1 정신을 잃는 순간 회사는 죽기 시작한다.",
+      "en": "It's always Day 1.",
+      "author": "Jeff Bezos",
+      "tag": "경영"
+    },
+    {
+      "ko": "70%의 정보로 결정하라. 90%를 기다리면 대부분 너무 늦다.",
+      "en": "Most decisions should probably be made with somewhere around 70% of the information you wish you had.",
+      "author": "Jeff Bezos",
+      "tag": "경영"
+    },
+    {
+      "ko": "당신이 한 일에 대해서는 거의 후회하지 않는다. 당신이 하지 않은 일에 대해 후회한다.",
+      "en": "In most cases, our biggest regrets turn out to be acts of omission.",
+      "author": "Jeff Bezos",
+      "tag": "경영"
+    },
+    {
+      "ko": "실패할 의지가 없다면 혁신할 수 없다.",
+      "en": "If you're not willing to fail, you can't innovate.",
+      "author": "Jeff Bezos",
+      "tag": "경영"
+    },
+    {
+      "ko": "물리적으로 불가능한 게 아니라면, 가능하다.",
+      "en": "When something is important enough, you do it even if the odds are not in your favor.",
+      "author": "Elon Musk",
+      "tag": "경영"
+    },
+    {
+      "ko": "첫 원칙에서 추론하라. 유추로 추론하지 말라.",
+      "en": "I think it is important to reason from first principles rather than by analogy.",
+      "author": "Elon Musk",
+      "tag": "경영"
+    },
+    {
+      "ko": "위대한 회사는 좋은 회사의 적이다.",
+      "en": "Good is the enemy of great.",
+      "author": "Jim Collins",
+      "tag": "경영"
+    },
+    {
+      "ko": "먼저 누가 타는지 정하고, 그다음에 어디로 갈지 정하라.",
+      "en": "First who, then what.",
+      "author": "Jim Collins",
+      "tag": "경영"
+    },
+    {
+      "ko": "고슴도치 개념: 당신이 세계 최고가 될 수 있는 것, 열정을 가진 것, 돈이 되는 것의 교집합.",
+      "en": "The Hedgehog Concept is the intersection of what you can be best at, what you are passionate about, and what drives your economic engine.",
+      "author": "Jim Collins",
+      "tag": "경영"
+    },
+    {
+      "ko": "사람들은 무엇을 하는지보다 왜 하는지에 끌린다.",
+      "en": "People don't buy what you do; they buy why you do it.",
+      "author": "Simon Sinek",
+      "tag": "경영"
+    },
+    {
+      "ko": "리더십은 책임이지 특권이 아니다.",
+      "en": "Leaders are the ones willing to look out for those to the left of them and those to the right of them.",
+      "author": "Simon Sinek",
+      "tag": "경영"
+    },
+    {
+      "ko": "경쟁 전략의 본질은 남들과 다른 것을 선택하는 것이다.",
+      "en": "The essence of strategy is choosing what not to do.",
+      "author": "Michael Porter",
+      "tag": "경영"
+    },
+    {
+      "ko": "혁신자의 딜레마: 기존 고객의 말을 듣는 것이 회사를 죽일 수 있다.",
+      "en": "The innovator's dilemma: listening to customers can kill a successful company.",
+      "author": "Clayton Christensen",
+      "tag": "경영"
+    },
+    {
+      "ko": "고객이 원하는 것을 고용하는 일을 이해하라.",
+      "en": "Understand the job the customer is trying to get done.",
+      "author": "Clayton Christensen",
+      "tag": "경영"
+    },
+    {
+      "ko": "당신의 경쟁자를 연구하지 말고, 고객을 연구하라.",
+      "en": "Excellence is the gradual result of always striving to do better.",
+      "author": "Tom Peters",
+      "tag": "경영"
+    },
+    {
+      "ko": "당신의 최고 고객은 당신의 최대 교사다.",
+      "en": "Your customers are your best teachers.",
+      "author": "Bill Gates",
+      "tag": "경영"
+    },
+    {
+      "ko": "나는 어려운 일을 할 게으른 사람을 뽑는다. 왜냐하면 게으른 사람은 쉬운 방법을 찾기 때문이다.",
+      "en": "I choose a lazy person to do a hard job because a lazy person will find an easy way to do it.",
+      "author": "Bill Gates",
+      "tag": "경영"
+    },
+    {
+      "ko": "성공은 형편없는 교사다. 똑똑한 사람에게 자신이 패배할 수 없다고 믿게 만든다.",
+      "en": "Success is a lousy teacher. It seduces smart people into thinking they can't lose.",
+      "author": "Bill Gates",
+      "tag": "경영"
+    },
+    {
+      "ko": "당신의 가장 불만족스러운 고객이 가장 큰 학습의 원천이다.",
+      "en": "Your most unhappy customers are your greatest source of learning.",
+      "author": "Bill Gates",
+      "tag": "경영"
+    },
+    {
+      "ko": "변화 전에 변화하라.",
+      "en": "Change before you have to.",
+      "author": "Jack Welch",
+      "tag": "경영"
+    },
+    {
+      "ko": "당신의 운명을 통제하라. 그렇지 않으면 남이 한다.",
+      "en": "Control your own destiny or someone else will.",
+      "author": "Jack Welch",
+      "tag": "경영"
+    },
+    {
+      "ko": "현실을 있는 그대로 보는 것, 원하는 대로가 아니라.",
+      "en": "Face reality as it is, not as it was or as you wish it to be.",
+      "author": "Jack Welch",
+      "tag": "경영"
+    },
+    {
+      "ko": "편집증 환자만이 살아남는다.",
+      "en": "Only the paranoid survive.",
+      "author": "Andrew Grove",
+      "tag": "경영"
+    },
+    {
+      "ko": "전략적 변곡점: 기존 방식이 더 이상 통하지 않는 순간.",
+      "en": "A strategic inflection point is a time in the life of a business when its fundamentals are about to change.",
+      "author": "Andrew Grove",
+      "tag": "경영"
+    },
+    {
+      "ko": "우리는 실수로부터 배우는 것이 성공으로부터 배우는 것보다 많다.",
+      "en": "We learn more from our failures than our successes.",
+      "author": "Reed Hastings",
+      "tag": "경영"
+    },
+    {
+      "ko": "큰 베팅을 두려워하지 마라. 작은 베팅은 작은 결과만 낳는다.",
+      "en": "Don't be afraid to place big bets.",
+      "author": "Reed Hastings",
+      "tag": "경영"
+    },
+    {
+      "ko": "다른 사람을 성장시키는 것이 당신을 성장시킨다.",
+      "en": "Empathy is not just a nice-to-have. It's a must-have.",
+      "author": "Satya Nadella",
+      "tag": "경영"
+    },
+    {
+      "ko": "학습하는 조직이 학습하지 않는 조직을 이긴다.",
+      "en": "Learn-it-all does better than know-it-all.",
+      "author": "Satya Nadella",
+      "tag": "경영"
+    },
+    {
+      "ko": "고객을 먼저 대하지 말고, 직원을 먼저 대하라. 그러면 직원이 고객을 챙긴다.",
+      "en": "If you take care of your employees, they will take care of the customers.",
+      "author": "Richard Branson",
+      "tag": "경영"
+    },
+    {
+      "ko": "기업가는 잃을 여유가 있는 것만 건다. 그리고 그것이 그를 자유롭게 한다.",
+      "en": "You don't learn to walk by following rules. You learn by doing, and by falling over.",
+      "author": "Richard Branson",
+      "tag": "경영"
+    },
+    {
+      "ko": "관계자가 아니라 열정적인 사람을 고용하라.",
+      "en": "Hire for attitude, train for skill.",
+      "author": "Herb Kelleher",
+      "tag": "경영"
+    },
+    {
+      "ko": "당신이 하지 않은 결정이 가장 큰 결정인 경우가 많다.",
+      "en": "The decisions you don't make are often the most important decisions of your career.",
+      "author": "Howard Schultz",
+      "tag": "경영"
+    },
+    {
+      "ko": "큰 것을 꿈꾸고, 작은 것을 실행하라.",
+      "en": "Dream big, start small.",
+      "author": "Howard Schultz",
+      "tag": "경영"
+    },
+    {
+      "ko": "부는 만드는 것이 아니라 관리하는 것이다.",
+      "en": "The way to become rich is to put all your eggs in one basket and then watch that basket.",
+      "author": "Andrew Carnegie",
+      "tag": "경영"
+    },
+    {
+      "ko": "성공은 최종 결과가 아니라 실패를 극복하는 용기다.",
+      "en": "Success is not final, failure is not fatal: It is the courage to continue that counts.",
+      "author": "Winston Churchill",
+      "tag": "경영"
+    },
+    {
+      "ko": "나쁜 뉴스는 빨리 전달되어야 좋다.",
+      "en": "Bad news isn't wine. It doesn't improve with age.",
+      "author": "Colin Powell",
+      "tag": "경영"
+    },
+    {
+      "ko": "계획이 적이 없다면, 그건 계획이 아니다.",
+      "en": "Plans are nothing; planning is everything.",
+      "author": "Dwight Eisenhower",
+      "tag": "경영"
+    },
+    {
+      "ko": "세상이 돌아가는 방식이 아니라, 돌아가야 하는 방식을 이해하라.",
+      "en": "Management is doing things right; leadership is doing the right things.",
+      "author": "Peter Drucker",
+      "tag": "경영"
+    },
+    {
+      "ko": "행동으로 가는 장애물이 행동을 진전시킨다. 길을 막는 것이 길이 된다.",
+      "en": "The impediment to action advances action. What stands in the way becomes the way.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "당신에게 일어난 일에 대해 화내지 마라. 그것들은 자신에게 일어난 일에 대해 신경 쓰지 않는다.",
+      "en": "You have power over your mind — not outside events. Realize this, and you will find strength.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "최고의 복수는 그와 같지 않은 것이다.",
+      "en": "The best revenge is to be unlike him who performed the injury.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "좋은 사람이 되는 것에 대해 논쟁하느라 시간 낭비하지 말고, 그냥 좋은 사람이 되어라.",
+      "en": "Waste no more time arguing what a good man should be. Be one.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "당신이 매일 아침 일어날 때 스스로에게 말하라: 나는 오지랖 넓은 사람들을 만날 것이다.",
+      "en": "When you arise in the morning, think of what a precious privilege it is to be alive.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "외부에서 평온을 찾는 자는 결코 찾지 못한다. 평온은 안에 있다.",
+      "en": "Look within. Within is the fountain of good, and it will ever bubble up, if you will ever dig.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "현재 순간에 집중하라. 그것이 당신이 가진 전부다.",
+      "en": "Confine yourself to the present.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "당신의 영혼은 당신의 생각의 색깔을 띤다.",
+      "en": "The soul becomes dyed with the color of its thoughts.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우리는 현실보다 상상 속에서 더 많이 고통받는다.",
+      "en": "We suffer more in imagination than in reality.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "운명은 기꺼이 따르는 자를 이끌고, 저항하는 자를 끌고 간다.",
+      "en": "Fate leads the willing and drags along the unwilling.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "중요한 것은 얼마나 오래 사느냐가 아니라 얼마나 잘 사느냐다.",
+      "en": "It is not the man who has too little, but the man who craves more, that is poor.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "행운은 준비가 기회를 만나는 지점이다.",
+      "en": "Luck is what happens when preparation meets opportunity.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 시작은 다른 시작의 끝에서 온다.",
+      "en": "Every new beginning comes from some other beginning's end.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "짧은 인생이 아니다. 우리가 많은 시간을 낭비하는 것뿐.",
+      "en": "It is not that we have a short time to live, but that we waste a lot of it.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "당신에게 일어나는 일은 중요하지 않다. 당신이 그것에 어떻게 반응하느냐가 중요하다.",
+      "en": "It's not what happens to you, but how you react to it that matters.",
+      "author": "Epictetus",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우리가 통제할 수 있는 것과 통제할 수 없는 것을 구분하라. 이것이 자유의 시작이다.",
+      "en": "Make the best use of what is in your power, and take the rest as it happens.",
+      "author": "Epictetus",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "자신을 다스리지 못하는 자는 자유롭지 않다.",
+      "en": "No man is free who is not master of himself.",
+      "author": "Epictetus",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "철학자처럼 보이지 말고, 철학을 실천하라.",
+      "en": "Don't explain your philosophy. Embody it.",
+      "author": "Epictetus",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "어려움이 사람을 드러내는 것이 아니라, 어려움이 사람을 만든다.",
+      "en": "Difficulties strengthen the mind, as labor does the body.",
+      "author": "Epictetus",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "배우고 때때로 익히면 또한 기쁘지 아니한가.",
+      "en": "Is it not pleasant to learn with a constant perseverance and application?",
+      "author": "공자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "자신에게 엄격하고 남에게 관대하라.",
+      "en": "Demand much of yourself and expect little from others.",
+      "author": "공자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "아는 자는 좋아하는 자만 못하고, 좋아하는 자는 즐기는 자만 못하다.",
+      "en": "He who knows is not equal to he who loves; he who loves is not equal to he who enjoys.",
+      "author": "공자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "지혜로운 자는 흔들리지 않고, 어진 자는 걱정하지 않으며, 용감한 자는 두려워하지 않는다.",
+      "en": "The wise are not perplexed; the virtuous are not anxious; the bold are not afraid.",
+      "author": "공자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "천 리 길도 한 걸음부터.",
+      "en": "A journey of a thousand miles begins with a single step.",
+      "author": "노자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "남을 아는 자는 지혜롭고, 자신을 아는 자는 밝다.",
+      "en": "Knowing others is intelligence; knowing yourself is true wisdom.",
+      "author": "노자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "자연은 서두르지 않지만 모든 것이 이루어진다.",
+      "en": "Nature does not hurry, yet everything is accomplished.",
+      "author": "노자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "물처럼 살아라. 부드럽지만 강한 것도 뚫는다.",
+      "en": "Nothing in the world is softer than water, yet nothing can surpass it in overcoming the hard.",
+      "author": "노자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "마음이 모든 것이다. 네가 생각하는 것이 네가 된다.",
+      "en": "The mind is everything. What you think you become.",
+      "author": "붓다",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "분노를 품는 것은 남에게 던질 뜨거운 석탄을 쥐는 것과 같다. 화상 입는 건 너다.",
+      "en": "Holding on to anger is like grasping a hot coal with the intent of throwing it at someone else; you are the one who gets burned.",
+      "author": "붓다",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "세 가지는 오래 숨길 수 없다: 태양, 달, 진실.",
+      "en": "Three things cannot be long hidden: the sun, the moon, and the truth.",
+      "author": "붓다",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사람에게 모든 것을 빼앗아도, 마지막 하나, 어떤 상황에서든 자신의 태도를 선택할 자유는 빼앗을 수 없다.",
+      "en": "Everything can be taken from a man but one thing: the last of the human freedoms — to choose one's attitude in any given set of circumstances.",
+      "author": "Viktor Frankl",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "자극과 반응 사이에는 공간이 있다. 그 공간에 우리의 성장과 자유가 있다.",
+      "en": "Between stimulus and response there is a space. In that space is our power to choose our response.",
+      "author": "Viktor Frankl",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "의미를 찾은 사람은 어떤 '어떻게'든 견딜 수 있다.",
+      "en": "Those who have a 'why' to live can bear with almost any 'how.'",
+      "author": "Viktor Frankl",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "의식이 없으면 당신은 그것을 운명이라 부를 것이다.",
+      "en": "Until you make the unconscious conscious, it will direct your life and you will call it fate.",
+      "author": "Carl Jung",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사람은 자신의 어둠을 아는 것을 통해 빛을 찾는다.",
+      "en": "One does not become enlightened by imagining figures of light, but by making the darkness conscious.",
+      "author": "Carl Jung",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "자기 자신에게 진실하라. 이것이 모든 미덕의 시작이다.",
+      "en": "To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "오늘의 당신이 만나는 가장 큰 적은 어제의 당신이다.",
+      "en": "What lies behind us and what lies before us are tiny matters compared to what lies within us.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "위대한 영혼은 항상 평범한 사람들의 격렬한 반대를 받는다.",
+      "en": "A foolish consistency is the hobgoblin of little minds.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "대부분의 사람은 조용한 절망 속에서 살아간다.",
+      "en": "The mass of men lead lives of quiet desperation.",
+      "author": "Henry David Thoreau",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "성공은 당신이 예상한 시간에 오지 않는다. 당신이 그것을 만들 준비가 되었을 때 온다.",
+      "en": "Go confidently in the direction of your dreams. Live the life you have imagined.",
+      "author": "Henry David Thoreau",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "자신을 죽이지 않는 것은 자신을 더 강하게 만든다.",
+      "en": "That which does not kill us makes us stronger.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "이유를 가진 자는 거의 모든 방법을 견딜 수 있다.",
+      "en": "He who has a why to live for can bear almost any how.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "괴물과 싸우는 자는 스스로 괴물이 되지 않도록 조심해야 한다.",
+      "en": "He who fights with monsters should look to it that he himself does not become a monster.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "세상에서 가장 위대한 것은 자기 자신이 되는 법을 아는 것이다.",
+      "en": "The greatest thing in the world is to know how to belong to oneself.",
+      "author": "Montaigne",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "검토되지 않은 삶은 살 가치가 없다.",
+      "en": "The unexamined life is not worth living.",
+      "author": "Socrates",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "내가 아는 유일한 것은, 내가 아무것도 모른다는 것이다.",
+      "en": "I know that I know nothing.",
+      "author": "Socrates",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "인간은 습관의 동물이다. 탁월함은 행위가 아니라 습관이다.",
+      "en": "We are what we repeatedly do. Excellence, then, is not an act, but a habit.",
+      "author": "Will Durant",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "도와 하늘은 말이 없지만 사계절이 운행하고 만물이 자란다.",
+      "en": "The Way does nothing, yet nothing is left undone.",
+      "author": "장자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "큰 지혜는 넉넉하고, 작은 지혜는 따진다.",
+      "en": "Great knowledge is all-encompassing; small knowledge is limited.",
+      "author": "장자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "부러진 것도 쓸모가 있다. 쓸모없음에도 쓸모가 있다.",
+      "en": "Everyone knows the usefulness of the useful, but no one knows the usefulness of the useless.",
+      "author": "장자",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사람은 과거의 은혜보다 미래의 이익에 따라 움직인다. 혜택은 최대한 뒤로 미뤄라.",
+      "en": "People are moved more by future gains than past favors; defer rewards as long as possible.",
+      "author": "韓非子",
+      "tag": "투자"
+    },
+    {
+      "ko": "사냥개의 가치는 토끼가 있을 때에만 존재한다. 너무 열심히 사냥하지 말라.",
+      "en": "The hunting dog has value only while rabbits exist; do not hunt too zealously.",
+      "author": "史記",
+      "tag": "투자"
+    },
+    {
+      "ko": "파도를 보지 말고, 바람의 방향을 보아라.",
+      "en": "Watch not the waves, but the direction of the wind.",
+      "author": "동양 격언",
+      "tag": "투자"
+    },
+    {
+      "ko": "워라밸은 주·월·연 단위가 아니라 '인생' 단위로 짜야 한다. 일할 때는 제대로 일하라.",
+      "en": "Work-life balance must be measured in the unit of a lifetime, not weeks or months.",
+      "author": "작자미상",
+      "tag": "투자"
+    },
+    {
+      "ko": "항구에 정박한 배는 안전하지만, 그러자고 배를 만든 것이 아니다.",
+      "en": "A ship in harbor is safe, but that is not what ships are built for.",
+      "author": "John A. Shedd",
+      "tag": "투자"
+    },
+    {
+      "ko": "사람들의 이타심을 기대하기보다 그들의 이기심을 활용하는 것이 낫다.",
+      "en": "It is better to appeal to self-interest than to expect altruism.",
+      "author": "작자미상",
+      "tag": "투자"
+    },
+    {
+      "ko": "지금 당신이 이따금씩 실패하고 있지 않다면, 그것은 아무것도 새롭게 하고 있지 않다는 신호다.",
+      "en": "If you're not failing every now and again, it's a sign you're not doing anything innovative.",
+      "author": "Woody Allen",
+      "tag": "투자"
+    },
+    {
+      "ko": "돈과 친해져라. 경제·재테크·경영을 공부하라. 무지는 가장 비싼 사치다.",
+      "en": "Befriend money through study — economics, investing, business.",
+      "author": "세이노",
+      "tag": "투자"
+    },
+    {
+      "ko": "나에게 투자하는 시간은 돈을 버는 시간만큼 중요하다.",
+      "en": "Time invested in yourself is as important as time spent earning.",
+      "author": "세이노",
+      "tag": "투자"
+    },
+    {
+      "ko": "간판이나 관계가 아닌, 실력으로 값을 증명하라.",
+      "en": "Prove your worth with competence, not credentials or connections.",
+      "author": "세이노",
+      "tag": "투자"
+    },
+    {
+      "ko": "무능한 리더는 부지런한 것보다 차라리 게으른 것이 낫다.",
+      "en": "An incompetent leader does less harm being idle than being busy.",
+      "author": "작자미상",
+      "tag": "경영"
+    },
+    {
+      "ko": "어리석은 자의 특징은 잘못을 반복하고 후회는 짧다는 점이다.",
+      "en": "The fool's trait is to repeat mistakes with brief remorse.",
+      "author": "Cicero",
+      "tag": "경영"
+    },
+    {
+      "ko": "인내는 약자를 강자로 만들고, 성급함은 강자를 약자로 만든다.",
+      "en": "Patience makes the weak strong; impatience makes the strong weak.",
+      "author": "Charles Caleb Colton",
+      "tag": "경영"
+    },
+    {
+      "ko": "좋은 리더는 사람들의 신뢰를 얻고, 위대한 리더는 사람들이 스스로를 신뢰하게 만든다.",
+      "en": "A good leader inspires confidence in the leader; a great leader inspires confidence in themselves.",
+      "author": "Eleanor Roosevelt",
+      "tag": "경영"
+    },
+    {
+      "ko": "왕관을 쓰려거든 그 무게를 견뎌야 한다.",
+      "en": "Uneasy lies the head that wears a crown.",
+      "author": "Shakespeare",
+      "tag": "경영"
+    },
+    {
+      "ko": "우리가 두려워해야 할 유일한 것은 두려움 그 자체이다.",
+      "en": "The only thing we have to fear is fear itself.",
+      "author": "Franklin D. Roosevelt",
+      "tag": "경영"
+    },
+    {
+      "ko": "젊은 날의 실패를 부끄러워 말고 교훈으로 삼으면, 언젠가 큰 성공이 뒤따른다.",
+      "en": "Do not be ashamed of early failures; engrave their lessons and greatness will follow.",
+      "author": "徳川家康",
+      "tag": "경영"
+    },
+    {
+      "ko": "모두에게 예의 바르고, 많은 이에게 붙임성 있고, 소수에게 친밀하며, 한 사람에게 진정한 벗이 되고, 그 누구에게도 적이 되지 마라.",
+      "en": "Be civil to all; sociable to many; familiar with few; friend to one; enemy to none.",
+      "author": "Benjamin Franklin",
+      "tag": "경영"
+    },
+    {
+      "ko": "준비에 실패하는 것은, 곧 실패를 준비하는 것이다.",
+      "en": "By failing to prepare, you are preparing to fail.",
+      "author": "Benjamin Franklin",
+      "tag": "경영"
+    },
+    {
+      "ko": "받은 상처는 모래에 새기고, 받은 은혜는 대리석에 새겨라.",
+      "en": "Write injuries in dust, benefits in marble.",
+      "author": "Benjamin Franklin",
+      "tag": "경영"
+    },
+    {
+      "ko": "타인을 설득하려거든, 이성보다는 이익에 호소하라.",
+      "en": "If you would persuade, you must appeal to interest rather than intellect.",
+      "author": "Benjamin Franklin",
+      "tag": "경영"
+    },
+    {
+      "ko": "비관론자는 모든 기회에서 어려움을 찾고, 낙관론자는 모든 어려움에서 기회를 찾는다.",
+      "en": "A pessimist sees the difficulty in every opportunity; an optimist sees the opportunity in every difficulty.",
+      "author": "Winston Churchill",
+      "tag": "경영"
+    },
+    {
+      "ko": "최선을 다하는 것만으로는 부족하다. 때로는 요구되는 것을 해야만 한다.",
+      "en": "It is not enough that we do our best; sometimes we have to do what is required.",
+      "author": "Winston Churchill",
+      "tag": "경영"
+    },
+    {
+      "ko": "성공이란 열정을 잃지 않고 실패를 거듭할 수 있는 능력이다.",
+      "en": "Success is the ability to go from one failure to another with no loss of enthusiasm.",
+      "author": "Winston Churchill",
+      "tag": "경영"
+    },
+    {
+      "ko": "하라, 혹은 하지 마라. '해보겠다'는 없다.",
+      "en": "Do or do not. There is no try.",
+      "author": "Yoda",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "역사는 반복된다 — 처음은 비극으로, 두 번째는 희극으로.",
+      "en": "History repeats itself — first as tragedy, second as farce.",
+      "author": "Karl Marx",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "이 세상의 문제는, 바보와 광신도는 늘 확신에 차 있고 현명한 사람은 의심으로 가득하다는 점이다.",
+      "en": "The whole problem with the world is that fools and fanatics are always so certain of themselves, but wiser men so full of doubts.",
+      "author": "Bertrand Russell",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "타고난 악인은 없다. 평소 선량한 사람도 다급해지면 악인이 된다. 마음을 놓지 마라.",
+      "en": "There are no born villains; ordinary people turn evil when pressed. Never let your guard down.",
+      "author": "夏目漱石",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "바람이 불지 않을 때 바람개비를 돌리는 방법은, 앞으로 달려나가는 것이다.",
+      "en": "When the wind doesn't blow, run forward to turn your pinwheel.",
+      "author": "Dale Carnegie",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "생각이 말이 되고, 말이 행동이 되며, 행동이 습관, 습관이 성품, 성품이 운명이 된다.",
+      "en": "Your thoughts become your words, your words your actions, your actions your habits, your habits your character, your character your destiny.",
+      "author": "Samuel Smiles",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 사람을 잠시 속일 수는 있고 일부를 영원히 속일 수는 있지만, 모든 사람을 영원히 속일 수는 없다.",
+      "en": "You can fool all of the people some of the time, and some of the people all of the time, but you cannot fool all of the people all of the time.",
+      "author": "Abraham Lincoln",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "국민당 치하에서는 자유의 많고 적음이 문제였지만, 공산당 치하에서는 자유의 있고 없음이 문제다.",
+      "en": "Under the Nationalists, freedom was a matter of degree; under the Communists, it is a matter of existence.",
+      "author": "儲安平",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "안보는 힘에 더 큰 힘으로 맞설 때만 지켜진다.",
+      "en": "Security could be preserved only by meeting power with greater power.",
+      "author": "Dean Acheson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "인생은 차선들이 모여서 최선이 된다. 계획대로 되지 않아도 좌절하지 마라.",
+      "en": "Life becomes best through the sum of second-best choices; do not despair when plans fail.",
+      "author": "작자미상",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "삶이란 폭풍이 지나가기만을 기다리는 것이 아니라, 빗속에서 춤추는 법을 배우는 것이다.",
+      "en": "Life isn't about waiting for the storm to pass, but learning to dance in the rain.",
+      "author": "Vivian Greene",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "용기란 두려움이 없는 것이 아니다. 두려워하면서도 맞서 이겨내는 것이다.",
+      "en": "Courage is resistance to fear, mastery of fear — not absence of fear.",
+      "author": "Mark Twain",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "의미 있는 침묵이 의미 없는 말보다 항상 더 낫다.",
+      "en": "A meaningful silence is always better than meaningless words.",
+      "author": "작자미상",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "이별의 순간이 오기 전까지는, 사랑은 자신의 깊이를 결코 알지 못한다.",
+      "en": "Ever has it been that love knows not its own depth until the hour of separation.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "과장이란 이성을 잃은 진실이다.",
+      "en": "Exaggeration is truth that has lost its temper.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "관대함은 줄 수 있는 것보다 더 많이 주는 것이고, 교만은 필요한 것보다 더 적게 받는 것이다.",
+      "en": "Generosity is giving more than you can, and pride is taking less than you need.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "수다스러운 이에게서 침묵을, 편협한 이에게서 관용을, 불친절한 이에게서 친절을 배웠다.",
+      "en": "I have learnt silence from the talkative, toleration from the intolerant, and kindness from the unkind.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "솔직해야 한다면, 아름답게 솔직하라.",
+      "en": "If indeed you must be candid, be candid beautifully.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "일을 사랑이 아닌 혐오로만 하고 있다면, 그 일을 떠나는 것이 낫다.",
+      "en": "If you cannot work with love but only with distaste, it is better that you should leave your work.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사랑한다면 떠나보내라. 돌아오면 원래 당신의 사람이었고, 돌아오지 않으면 애초부터 아니었다.",
+      "en": "If you love somebody, let them go — for if they return, they were always yours; if they don't, they never were.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "바람에게 비밀을 말했다면, 바람이 나무에게 전한 것을 탓하지 말라.",
+      "en": "If you reveal your secrets to the wind, you should not blame the wind for revealing them to the trees.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사랑 없는 삶은 꽃도 열매도 없는 나무와 같다.",
+      "en": "Life without love is like a tree without blossoms or fruit.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "고통 속에서 가장 강한 영혼이 나온다. 위대한 인격에는 상처의 흔적이 새겨져 있다.",
+      "en": "Out of suffering have emerged the strongest souls; the most massive characters are seared with scars.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "슬픔이 당신의 존재를 깊이 파낼수록, 당신은 더 많은 기쁨을 담을 수 있다.",
+      "en": "The deeper sorrow carves into your being, the more joy you can contain.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "낙관주의자는 장미를 보고 가시를 보지 않는다. 비관주의자는 가시만 보고 장미를 모른다.",
+      "en": "The optimist sees the rose and not its thorns; the pessimist stares at the thorns, oblivious of the rose.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사람을 이해하려면 그가 이룬 것이 아니라, 이루고자 하는 것을 보라.",
+      "en": "To understand the heart and mind of a person, look not at what he has already achieved, but at what he aspires to do.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "어제는 오늘의 기억일 뿐이며, 내일은 오늘의 꿈이다.",
+      "en": "Yesterday is but today's memory; tomorrow is today's dream.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우리는 기쁨과 슬픔을 경험하기 훨씬 전부터 이미 선택한다.",
+      "en": "We choose our joys and sorrows long before we experience them.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "울지 않는 지혜, 웃지 않는 철학, 아이 앞에서 고개 숙이지 않는 위대함은 내 곁에 두지 않는다.",
+      "en": "Keep me away from the wisdom which does not cry, the philosophy which does not laugh, and the greatness which does not bow before children.",
+      "author": "Kahlil Gibran",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우리의 생각을 제외하면, 우리가 전적으로 통제할 수 있는 것은 없다.",
+      "en": "Except our own thoughts, there is nothing absolutely in our power.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "좋은 지성만으로는 충분치 않다. 중요한 것은 그것을 잘 쓰는 것이다.",
+      "en": "It is not enough to have a good mind; the main thing is to use it well.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사람이 무엇을 생각하는지 알려면, 그가 말하는 것보다 행하는 것을 보라.",
+      "en": "To know what people really think, pay regard to what they do, rather than what they say.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "계속 밀고 나아가라. 나는 할 수 있는 모든 실수를 저질렀지만, 그래도 계속 나아갔다.",
+      "en": "You just keep pushing. I made every mistake that could be made, but I just kept pushing.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "환상 속의 기쁨이 때로는 진짜 슬픔보다 더 값지다.",
+      "en": "Illusory joy is often worth more than genuine sorrow.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "좋은 책을 읽는 것은 지난 시대의 가장 뛰어난 이들과 대화하는 것과 같다.",
+      "en": "The reading of all good books is like a conversation with the finest minds of past centuries.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "결정하지 않기로 하는 것도 하나의 결정이다.",
+      "en": "If you choose not to decide, you still have made a choice.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "희망이란 꿈이 이루어지리라 믿고자 하는 영혼의 갈망이다.",
+      "en": "Hope is the desire of the soul to be convinced that the dream will come true.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "누군가 나를 모욕할 때, 나는 내 영혼을 그 모욕이 닿지 못할 만큼 높이 끌어올리려 애쓴다.",
+      "en": "Whenever anyone has offended me, I try to raise my soul so high that the offense cannot reach it.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "세상을 정복하기보다 자기 자신을 먼저 정복하라.",
+      "en": "Conquer yourself rather than the world.",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "낙관주의자는 빛이 없는 곳에서 빛을 본다. 비관주의자는 왜 그 빛을 꺼버리려 달려드는가.",
+      "en": "An optimist may see a light where there is none, but why must the pessimist always run to blow it out?",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "나는 내가 존재함을 안다. 문제는, 그 '나'가 무엇인가이다.",
+      "en": "I know that I exist; the question is, what is this 'I' that 'I' know?",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "당신의 인생 전체가 꿈이 아니라는 것을 어떻게 확신하는가?",
+      "en": "How can you be certain that your whole life is not a dream?",
+      "author": "René Descartes",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "산다는 것은 고통받는 것이고, 살아남는 것은 그 고통에서 의미를 찾는 것이다.",
+      "en": "To live is to suffer, to survive is to find some meaning in the suffering.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "왜 오직 인간만이 웃는가. 인간은 홀로 그토록 깊이 고통받기에, 웃음을 발명해야만 했다.",
+      "en": "Perhaps I know best why it is man alone who laughs; he alone suffers so deeply that he had to invent laughter.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "허물을 벗지 못하는 뱀은 죽는다. 생각을 바꾸지 못하는 정신 또한 마찬가지다.",
+      "en": "The snake which cannot cast its skin has to die. As well the minds which are prevented from changing their opinions.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "결혼할 때 스스로에게 물어라. 나이가 들어서도 이 사람과 즐겁게 대화할 수 있겠는가?",
+      "en": "When marrying, ask yourself: Do you believe that you will be able to converse well with this person into your old age? Everything else is transitory.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "진리에게는 거짓말보다 확신이 더 위험한 적이다.",
+      "en": "Convictions are more dangerous enemies of truth than lies.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "자신에 대해 많이 말하는 것도 자신을 감추는 수단이 될 수 있다.",
+      "en": "Talking much about oneself can also be a means to conceal oneself.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "진리를 찾는 일은, 지금껏 믿어 온 모든 '진리'를 의심하는 데서 시작된다.",
+      "en": "The search for truth begins with the doubt of all 'truths' in which one has previously believed.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "천국에는 흥미로운 사람이 하나도 없다.",
+      "en": "In heaven all the interesting people are missing.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사실은 없다. 오직 해석만이 있을 뿐이다.",
+      "en": "There are no facts, only interpretations.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "개인이 미치는 것은 드물지만, 집단·정당·국가·시대가 미치는 것은 오히려 흔하다.",
+      "en": "Insanity in individuals is something rare — but in groups, parties, nations, and epochs it is the rule.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "언젠가 날고 싶다면, 먼저 서고 걷고 달리고 오르고 춤추는 법부터 배워야 한다.",
+      "en": "He who would learn to fly one day must first learn to stand and walk and run and climb and dance.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "지혜로운 사람은 적을 사랑할 뿐 아니라, 친구를 미워할 줄도 알아야 한다.",
+      "en": "The man of knowledge must be able not only to love his enemies but also to hate his friends.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "잡초란 무엇인가? 그 가치가 아직 발견되지 않은 식물일 뿐이다.",
+      "en": "What is a weed? A plant whose virtues have not yet been discovered.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우리의 가장 큰 영광은 결코 넘어지지 않는 것이 아니라, 넘어질 때마다 다시 일어서는 것이다.",
+      "en": "Our greatest glory is not in never failing, but in rising up every time we fail.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "하루를 마쳤으면 그것으로 족하다. 오늘 할 수 있는 것은 다 한 것이다.",
+      "en": "Finish each day and be done with it. You have done what you could.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 날이 그 해 최고의 날이라고 가슴에 새겨라.",
+      "en": "Write it on your heart that every day is the best day in the year.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "두려움은 언제나 무지로부터 솟아난다.",
+      "en": "Fear always springs from ignorance.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "영웅이 평범한 사람보다 더 용감한 게 아니다. 다만 5분 더 오래 용감할 뿐이다.",
+      "en": "A hero is no braver than an ordinary man, but he is braver five minutes longer.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "완벽함은 더 이상 더할 것이 없을 때가 아니라, 더 이상 뺄 것이 없을 때 달성된다.",
+      "en": "Perfection is achieved, not when there is nothing more to add, but when there is nothing left to take away.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "가장 중요한 것은 눈에 보이지 않는다.",
+      "en": "What is essential is invisible to the eye.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "중요한 것은 도착하는 것이 아니라, 그곳을 향해 나아가는 것이다.",
+      "en": "What matters is not to arrive, but to go forward.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "배를 만들고 싶다면, 사람들에게 나무를 해 오라 명하지 말고 바다에 대한 동경을 심어 주어라.",
+      "en": "If you want to build a ship, teach them to yearn for the vast and endless sea, not to gather wood.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 어른들은 한때 아이였다. 그러나 그것을 기억하는 어른은 많지 않다.",
+      "en": "All grown-ups were once children, but only few of them remember it.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사랑이란 서로를 바라보는 것이 아니라, 같은 방향을 함께 바라보는 것이다.",
+      "en": "Love does not consist in gazing at each other, but in looking together in the same direction.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "남을 판단하는 것보다 자기 자신을 판단하는 것이 훨씬 더 어렵다.",
+      "en": "It is much more difficult to judge oneself than to judge others.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "계획이 없는 목표는 그저 바람일 뿐이다.",
+      "en": "A goal without a plan is just a wish.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사막을 아름답게 하는 것은, 그 어딘가에 우물을 감추고 있기 때문이다.",
+      "en": "What makes the desert beautiful is that somewhere it hides a well.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "미래에 관해 당신이 할 일은, 예측하는 것이 아니라 가능하게 만드는 것이다.",
+      "en": "As for the future, your task is not to foresee it, but to enable it.",
+      "author": "Antoine de Saint-Exupéry",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "당신이 강한 것은 완벽하지 않기 때문이고, 현명한 것은 의심을 품기 때문이다.",
+      "en": "You are strong because you are imperfect. You are wise because you have doubts.",
+      "author": "Darkest Hour (2017)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "지배력이란 모험을 무릅쓴 데 대한 보상이다.",
+      "en": "Dominion is the reward for daring to take risks.",
+      "author": "Winston Churchill",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 나라는 그 국민에 걸맞은 지도자를 갖는다.",
+      "en": "Every nation gets the leader it deserves.",
+      "author": "Winston Churchill",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "역사를 잊은 민족에게 미래는 없다.",
+      "en": "A nation that forgets its history has no future.",
+      "author": "Winston Churchill",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "미숙한 사랑은 '필요하니 사랑한다'고 말하고, 성숙한 사랑은 '사랑하니 필요하다'고 말한다.",
+      "en": "Immature love says, 'I love you because I need you.' Mature love says, 'I need you because I love you.'",
+      "author": "Erich Fromm",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "인생은 한 편의 이야기와 같다. 중요한 것은 길이가 아니라 그 가치다.",
+      "en": "As is a tale, so is life: not how long it is, but how good it is, is what matters.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "어려워서 감히 시도하지 못하는 것이 아니라, 시도하지 않기 때문에 어려워지는 것이다.",
+      "en": "It is not because things are difficult that we do not dare; it is because we do not dare that they are difficult.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "타인의 결점은 우리 눈앞에 있고, 자신의 결점은 등 뒤에 있다.",
+      "en": "Other people's faults are before our eyes; our own are behind our backs.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "목적지를 모른 채 항해하는 이에게는 어떠한 순풍도 도움이 되지 않는다.",
+      "en": "If a man does not know what port he is steering for, no wind is favorable to him.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "칭찬을 받는 태도를 보면 그 사람의 인격을 알 수 있다.",
+      "en": "You can tell the character of every man when you see how he receives praise.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "행복한 가족은 엇비슷한 이유로 행복하지만, 불행한 가족은 제각기 다른 이유로 불행하다.",
+      "en": "All happy families are alike; each unhappy family is unhappy in its own way.",
+      "author": "Leo Tolstoy",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "행복과 불행은 높이가 아니라, 지금 어디로 향해 가고 있느냐에 따라 결정된다.",
+      "en": "Happiness is not a matter of height, but of direction.",
+      "author": "Samuel Butler",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "삶은 피아노와 같다. 흰 건반은 행복, 검은 건반은 슬픔. 그러나 검은 건반도 음악을 만든다.",
+      "en": "Life is like a piano. The white keys represent happiness, the black show sadness. Yet the black keys also make music.",
+      "author": "작자미상",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "지식을 갖는 것만으로는 충분치 않다. 적용해야 한다. 소망만으로는 충분치 않다. 성취해야 한다.",
+      "en": "It is not enough to have knowledge; one must apply it. It is not enough to have wishes; one must also accomplish them.",
+      "author": "Johann Wolfgang von Goethe",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "5년 후에도 중요하지 않을 일이라면, 그것에 5분 이상 화내지 마라.",
+      "en": "If it won't matter in 5 years, don't spend more than 5 minutes getting angry about it.",
+      "author": "작자미상",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "걱정은 내일의 슬픔을 덜어 주지 않는다. 다만 오늘의 힘을 고갈시킨다.",
+      "en": "Worrying does not take away tomorrow's troubles. It takes away today's peace.",
+      "author": "Corrie ten Boom",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "작은 생명체로서 우리는 오직 사랑을 통해서만 우주의 광대함을 견딜 수 있다.",
+      "en": "For small creatures such as we, the vastness is bearable only through love.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "상상력은 때로 과거에는 없던 세계로 우리를 이끈다. 상상력 없이 갈 수 있는 곳은 없다.",
+      "en": "Imagination will often carry us to worlds that never were. But without it, we go nowhere.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우주에 우리 외에 아무도 없다면, 그것은 엄청난 공간의 낭비다.",
+      "en": "If we are alone in the universe, it sure seems like an awful waste of space.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "과학은 지식의 집합을 뛰어넘는, 하나의 사고방식이다.",
+      "en": "Science is more than a body of knowledge; it is a way of thinking.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사멸은 법칙이고, 생존은 예외다.",
+      "en": "Extinction is the rule. Survival is the exception.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "뇌는 근육과 같다. 사용될 때 우리는 기분이 좋다. 이해하는 것은 즐거운 일이다.",
+      "en": "The brain is like a muscle. When it is in use we feel very good. Understanding is joyous.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우리는 우주의 대표자들이다. 150억 년 우주 진화의 한 예시다.",
+      "en": "We are a way for the cosmos to know itself.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "광막한 공간과 영겁의 시간 속에서 이 작은 행성과 찰나의 순간을 함께 보낼 수 있었음은 큰 기쁨이었다.",
+      "en": "In the vastness of space and the immensity of time, it is my joy to share a planet and an epoch with you.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "패배는 일시적인 상태이지만, 포기는 그것을 영원히 지속시킨다.",
+      "en": "Being defeated is often a temporary condition; giving up is what makes it permanent.",
+      "author": "Marilyn vos Savant",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "조약돌을 둥글고 예쁘게 만드는 것은, 무쇠로 된 정(釘)이 아니라 부드럽게 쓰다듬는 물결이다.",
+      "en": "What rounds a pebble smooth is not the iron chisel, but the gentle caress of waves.",
+      "author": "법정 스님",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "불가능하다고 생각하면 그 어떤 것도 가능하지 않으며, 가능하다고 생각하면 그 어떤 것도 불가능하지 않다.",
+      "en": "Nothing is possible if you think it's impossible. Nothing is impossible if you think it's possible.",
+      "author": "Thomas J. Vilord",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "사랑의 시작은 상대방을 잘 알려고 노력하는 것이다. 무지한 사랑은 맹목적이고 폭력적이다.",
+      "en": "Love begins with the effort to know; ignorant love is blind and violent.",
+      "author": "작자미상",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "지옥으로 가는 길은 선의로 포장되어 있다.",
+      "en": "The road to hell is paved with good intentions.",
+      "author": "영어 속담",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "어제의 나보다 더 나은 내가 되어라. 남과 비교하지 말고, 어제의 자신과 비교하라.",
+      "en": "Compare yourself to who you were yesterday, not to who someone else is today.",
+      "author": "Jordan Peterson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "세상을 비판하기 전에 집안 정리부터 하라.",
+      "en": "Set your house in perfect order before you criticize the world.",
+      "author": "Jordan Peterson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "실용적인 것이 아닌, 의미 있는 것을 하라.",
+      "en": "Pursue what is meaningful, not what is expedient.",
+      "author": "Jordan Peterson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "진실을 말하라. 최소한 거짓말은 하지 마라.",
+      "en": "Tell the truth, or at least don't lie.",
+      "author": "Jordan Peterson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "말을 정확하게 하라.",
+      "en": "Be precise in your speech.",
+      "author": "Jordan Peterson",
+      "tag": "자기성찰"
+    }
+  ]
+}
