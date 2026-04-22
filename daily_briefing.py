@@ -529,20 +529,16 @@ def build_ssot_embed(d=None):
 
 def build_oracle_embed(probs,raw_markets,status):
     """🔭 Oracle §3.5 Polymarket 시나리오 확률 embed 생성"""
-    def bar(p):
-        n=int(round(p/5))  # 5%당 █ 하나 (최대 20칸)
-        n=max(0,min(20,n))
-        return"█"*n+"░"*(20-n)
     # 주도 시나리오
     max_sid=max(probs,key=probs.get)
     max_label=SCENARIO_MAP[max_sid]["label"]
-    # 시나리오별 라인
+    # 시나리오별 라인 (막대그래프 제거, 간결화)
     lines=[]
     for sid in["S1","S2","S3","S4"]:
         p=probs[sid];lab=SCENARIO_MAP[sid]["label"]
         st=status[sid];cov=f" `{st['ok']}/{st['total']}`" if st["total"]>0 else""
         mk=" 🔴**주도**" if sid==max_sid else""
-        lines.append(f"{lab} `{p:5.1f}%` {bar(p)}{cov}{mk}")
+        lines.append(f"{lab} `{p:5.1f}%`{cov}{mk}")
     # 원천 마켓 노출 (상위 6개)
     mk_lines=[]
     if raw_markets:
