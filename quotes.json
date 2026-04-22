@@ -1,12 +1,12 @@
 {
   "version": "1.0",
-  "count": 279,
+  "count": 367,
   "updated": "2026-04-22",
   "license": "public-domain / fair-use quotations",
   "categories": {
-    "투자": 60,
-    "경영": 65,
-    "자기성찰": 154
+    "투자": 68,
+    "경영": 86,
+    "자기성찰": 213
   },
   "quotes": [
     {
@@ -1682,6 +1682,534 @@
       "en": "Be precise in your speech.",
       "author": "Jordan Peterson",
       "tag": "자기성찰"
+    },
+    {
+      "ko": "큰 기교는 서툴러 보인다 (大巧若拙).",
+      "en": "Great skill appears clumsy.",
+      "author": "노자 <도덕경 45장>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "빛을 누그러뜨려 티끌과 하나가 되다 (和光同塵).",
+      "en": "Soften your light, blend with the dust.",
+      "author": "노자 <도덕경 4장>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "굽은 것이 온전하다 (曲則全).",
+      "en": "What yields remains whole.",
+      "author": "노자 <도덕경 22장>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "천지는 어질지 않아 만물을 짚강아지로 여긴다 (天地不仁).",
+      "en": "Heaven and earth are not humane; they treat all things as straw dogs.",
+      "author": "노자 <도덕경 5장>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "쓸모없음의 쓸모 (無用之用).",
+      "en": "The usefulness of the useless.",
+      "author": "장자 <인간세>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "나는 나를 잃었다 (吾喪我).",
+      "en": "I have lost myself.",
+      "author": "장자 <제물론>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "군자는 한 가지 그릇이 아니다 (君子不器).",
+      "en": "The noble person is not a vessel.",
+      "author": "공자 <논어 위정>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "지나침은 모자람과 같다 (過猶不及).",
+      "en": "Going too far is as bad as falling short.",
+      "author": "공자 <논어 선진>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "아홉 길 산을 쌓는데 한 삼태기가 모자라 무너진다 (爲山九仞 功虧一簣).",
+      "en": "A nine-fathom mound can fail for want of one basket of earth.",
+      "author": "<서경>",
+      "tag": "경영"
+    },
+    {
+      "ko": "법은 귀족을 피하지 않고, 형벌은 대부를 용서하지 않는다.",
+      "en": "The law does not yield to nobility, nor punishment spare high officials.",
+      "author": "한비자",
+      "tag": "경영"
+    },
+    {
+      "ko": "괴로움은 사건이 아니라 그 사건에 대한 네 판단에서 온다.",
+      "en": "We are disturbed not by things, but by the views we take of them.",
+      "author": "Epictetus <Enchiridion>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우리 힘 안에 있는 것과 밖에 있는 것을 구분하라.",
+      "en": "Distinguish what is within your power from what is not.",
+      "author": "Epictetus",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "아침마다 말하라: 오늘 나는 참견꾼·배은망덕자·오만한 자를 만날 것이다.",
+      "en": "Begin each day by telling yourself: Today I shall meet meddlers, the ungrateful, and the arrogant.",
+      "author": "Marcus Aurelius <Meditations 2>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "네 마음 안으로 들어가라, 거기가 가장 조용한 평화의 자리다.",
+      "en": "Retreat into yourself — the mind finds no retreat more quiet than its own.",
+      "author": "Marcus Aurelius",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "인생에서 가장 큰 시간 낭비는 걱정이다.",
+      "en": "The greatest waste of life is worry.",
+      "author": "Seneca <On the Shortness of Life>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 곳에 있다는 것은 어디에도 없는 것이다.",
+      "en": "To be everywhere is to be nowhere.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "빨리 자란 것은 빨리 죽는다.",
+      "en": "What grows quickly withers quickly.",
+      "author": "Seneca",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "운명은 의지 있는 자를 이끌고, 거부하는 자는 끌고 간다.",
+      "en": "Fate leads the willing, drags the unwilling.",
+      "author": "Seneca (Cleanthes 인용)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "두 귀가 있고 입이 하나인 이유는, 두 배로 듣고 절반만 말하기 위함이다.",
+      "en": "We have two ears and one mouth so that we listen twice as much as we speak.",
+      "author": "Epictetus (귀속 🟡)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "불안은 자유의 현기증이다.",
+      "en": "Anxiety is the dizziness of freedom.",
+      "author": "Søren Kierkegaard <The Concept of Anxiety>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "절망은 죽음에 이르는 병이다.",
+      "en": "Despair is the sickness unto death.",
+      "author": "Søren Kierkegaard <The Sickness Unto Death>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "실존은 본질에 앞선다.",
+      "en": "Existence precedes essence.",
+      "author": "Jean-Paul Sartre",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "인간은 자유롭도록 선고받았다.",
+      "en": "Man is condemned to be free.",
+      "author": "Jean-Paul Sartre",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "지옥, 그것은 타인이다.",
+      "en": "Hell is other people.",
+      "author": "Jean-Paul Sartre <No Exit>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 깊은 사상가는 오해되기보다 이해되는 것을 더 두려워한다.",
+      "en": "Every deep thinker is more afraid of being understood than of being misunderstood.",
+      "author": "Friedrich Nietzsche <The Gay Science>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "인간은 극복되어야 할 그 무엇이다.",
+      "en": "Man is something that shall be overcome.",
+      "author": "Friedrich Nietzsche <Thus Spoke Zarathustra>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "진리란, 환상임을 잊어버린 환상들의 무리이다.",
+      "en": "Truths are illusions whose illusory nature has been forgotten.",
+      "author": "Friedrich Nietzsche",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "신은 죽었다. 그리고 우리가 그를 죽였다.",
+      "en": "God is dead. And we have killed him.",
+      "author": "Friedrich Nietzsche <The Gay Science>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "내가 더 멀리 보았다면, 그것은 거인들의 어깨 위에 서 있었기 때문이다.",
+      "en": "If I have seen further it is by standing on the shoulders of giants.",
+      "author": "Isaac Newton (1675)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "세계에서 가장 이해할 수 없는 것은, 세계가 이해 가능하다는 사실이다.",
+      "en": "The most incomprehensible thing about the universe is that it is comprehensible.",
+      "author": "Albert Einstein",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "첫째 원칙은 자기를 속이지 않는 것. 그리고 당신은 가장 속이기 쉬운 사람이다.",
+      "en": "The first principle is that you must not fool yourself — and you are the easiest person to fool.",
+      "author": "Richard Feynman",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "답을 가지고 사는 것보다, 답 없이 사는 것이 낫다.",
+      "en": "I would rather have questions that can't be answered than answers that can't be questioned.",
+      "author": "Richard Feynman",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "비범한 주장에는 비범한 증거가 필요하다.",
+      "en": "Extraordinary claims require extraordinary evidence.",
+      "author": "Carl Sagan",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "우리는 별의 먼지로 만들어졌다.",
+      "en": "We are made of star-stuff.",
+      "author": "Carl Sagan <Cosmos>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 모델은 틀렸다. 그러나 일부는 유용하다.",
+      "en": "All models are wrong, but some are useful.",
+      "author": "George Box (1976)",
+      "tag": "투자"
+    },
+    {
+      "ko": "상관은 인과가 아니다.",
+      "en": "Correlation is not causation.",
+      "author": "통계학 공리",
+      "tag": "투자"
+    },
+    {
+      "ko": "반증 불가능한 것은 과학이 아니다.",
+      "en": "What cannot be falsified is not science.",
+      "author": "Karl Popper <Logic of Scientific Discovery>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "관찰은 이론에 의해 오염된다 (theory-ladenness).",
+      "en": "All observation is theory-laden.",
+      "author": "Norwood Hanson (1958)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "시장 역사상 가장 비싼 네 단어: This time is different.",
+      "en": "The four most expensive words in investing: This time is different.",
+      "author": "John Templeton",
+      "tag": "투자"
+    },
+    {
+      "ko": "손실의 고통은 같은 크기 이익의 기쁨보다 약 2배 크다.",
+      "en": "The pain of a loss is roughly twice the pleasure of an equivalent gain.",
+      "author": "Kahneman & Tversky <Prospect Theory 1979>",
+      "tag": "투자"
+    },
+    {
+      "ko": "충격에서 부러지지 않는 것을 넘어 더 강해지는 것, 그것이 안티프래질이다.",
+      "en": "Antifragile: beyond not breaking under shock — becoming stronger by it.",
+      "author": "Nassim Taleb <Antifragile 2012>",
+      "tag": "투자"
+    },
+    {
+      "ko": "희박하지만 치명적인 리스크가, 흔하지만 사소한 리스크보다 위험하다.",
+      "en": "Rare but catastrophic risks are more dangerous than common but minor ones.",
+      "author": "Nassim Taleb <Black Swan 2007>",
+      "tag": "투자"
+    },
+    {
+      "ko": "싼값에 사려 하지 말고, 싼 이유를 이해하라.",
+      "en": "Do not seek to buy cheap; understand why it is cheap.",
+      "author": "투자 격언",
+      "tag": "투자"
+    },
+    {
+      "ko": "분산은 지식의 부족에 대한 방어책이다.",
+      "en": "Diversification is a protection against ignorance.",
+      "author": "Warren Buffett",
+      "tag": "투자"
+    },
+    {
+      "ko": "싸우지 않고 이기는 것이 최선이다.",
+      "en": "The supreme art of war is to subdue the enemy without fighting.",
+      "author": "孫子 <병법 모공>",
+      "tag": "경영"
+    },
+    {
+      "ko": "이긴 뒤에 싸워라, 싸우면서 이기려 하지 마라.",
+      "en": "Victorious warriors win first and then go to war; defeated warriors go to war first and then seek to win.",
+      "author": "孫子 <군형>",
+      "tag": "경영"
+    },
+    {
+      "ko": "전쟁은 다른 수단에 의한 정치의 연장이다.",
+      "en": "War is the continuation of politics by other means.",
+      "author": "Carl von Clausewitz <On War>",
+      "tag": "경영"
+    },
+    {
+      "ko": "어떤 전투 계획도 적과의 첫 접촉에서 살아남지 못한다.",
+      "en": "No plan of operations survives first contact with the enemy.",
+      "author": "Helmuth von Moltke the Elder",
+      "tag": "경영"
+    },
+    {
+      "ko": "전쟁에서 모든 것은 단순하다. 그러나 가장 단순한 것조차 어렵다.",
+      "en": "Everything in war is simple, but the simplest thing is difficult — this is friction.",
+      "author": "Carl von Clausewitz",
+      "tag": "경영"
+    },
+    {
+      "ko": "적이 실수 중일 때, 그를 방해하지 마라.",
+      "en": "Never interrupt your enemy when he is making a mistake.",
+      "author": "Napoleon",
+      "tag": "경영"
+    },
+    {
+      "ko": "아마추어는 전술을 말하고, 프로는 병참을 말한다.",
+      "en": "Amateurs talk tactics; professionals talk logistics.",
+      "author": "Omar Bradley (귀속 🟡)",
+      "tag": "경영"
+    },
+    {
+      "ko": "바람직한 것은 싸워서 얻는 것이 아니라, 싸울 필요 없게 만드는 것이다.",
+      "en": "The best victory is to make battle unnecessary.",
+      "author": "孫子",
+      "tag": "경영"
+    },
+    {
+      "ko": "전략 없는 전술은 패배 전의 소음에 불과하다.",
+      "en": "Tactics without strategy is the noise before defeat.",
+      "author": "孫子 (현대 변형 🟡)",
+      "tag": "경영"
+    },
+    {
+      "ko": "적을 알고 자신을 알면 백번 싸워도 위태롭지 않다 (知彼知己 百戰不殆).",
+      "en": "Know the enemy and know yourself; in a hundred battles you will never be in peril.",
+      "author": "孫子",
+      "tag": "경영"
+    },
+    {
+      "ko": "지옥이란, 더 이상 사랑할 수 없게 된 상태다.",
+      "en": "Hell is the suffering of being unable to love.",
+      "author": "Fyodor Dostoevsky <Brothers Karamazov>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "아름다움이 세상을 구원할 것이다.",
+      "en": "Beauty will save the world.",
+      "author": "Fyodor Dostoevsky <The Idiot>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "인간은 무엇에든 익숙해지는 존재이다.",
+      "en": "Man is a creature who can get accustomed to anything.",
+      "author": "Fyodor Dostoevsky <The House of the Dead>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "책은 우리 안의 얼어붙은 바다를 깨는 도끼여야 한다.",
+      "en": "A book must be the axe for the frozen sea within us.",
+      "author": "Franz Kafka (1904 서한)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "삶에서 가장 어려운 것은 사는 것이다.",
+      "en": "The hardest thing in life is to live.",
+      "author": "Franz Kafka",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "진짜 여행은 새 풍경을 찾는 것이 아니라, 새 눈을 갖는 것이다.",
+      "en": "The real voyage of discovery consists not in seeking new landscapes, but in having new eyes.",
+      "author": "Marcel Proust",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "슬픔도 이야기로 만들면 견딜 수 있다.",
+      "en": "All sorrows can be borne if you put them into a story.",
+      "author": "Isak Dinesen (귀속 🟡)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "인간은 파괴될 수 있지만 패배하지는 않는다.",
+      "en": "A man can be destroyed but not defeated.",
+      "author": "Ernest Hemingway <The Old Man and the Sea>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "예술은 보이는 것을 재현하지 않는다. 보이게 만든다.",
+      "en": "Art does not reproduce the visible; it makes visible.",
+      "author": "Paul Klee <Creative Confession 1920>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "탁월함은 행동이 아니라 습관이다.",
+      "en": "Excellence is not an act, but a habit.",
+      "author": "Will Durant <The Story of Philosophy>",
+      "tag": "경영"
+    },
+    {
+      "ko": "재능은 아무도 맞힐 수 없는 표적을 맞히고, 천재는 아무도 보지 못한 표적을 맞힌다.",
+      "en": "Talent hits a target no one else can hit; Genius hits a target no one else can see.",
+      "author": "Arthur Schopenhauer",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "좋은 예술가는 베끼고, 위대한 예술가는 훔친다.",
+      "en": "Good artists copy, great artists steal.",
+      "author": "Picasso/Eliot (귀속 🟡)",
+      "tag": "경영"
+    },
+    {
+      "ko": "독창성은 발각되지 않은 모방의 기술이다.",
+      "en": "Originality is the art of concealing your sources.",
+      "author": "William Ralph Inge",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "먼저 규칙을 배워라. 그래야 예술가처럼 깰 수 있다.",
+      "en": "Learn the rules like a pro, so you can break them like an artist.",
+      "author": "Picasso (귀속 🟡)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "글을 쓰는 것은 두 번 사는 것이다.",
+      "en": "We write to taste life twice.",
+      "author": "Anaïs Nin",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "모든 예술은 전혀 쓸모없다.",
+      "en": "All art is quite useless.",
+      "author": "Oscar Wilde",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "고요한 바다는 숙련된 뱃사공을 만들지 않는다.",
+      "en": "Smooth seas do not make skillful sailors.",
+      "author": "아프리카 격언",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "용기는 두려움의 부재가 아니라, 두려움보다 더 중요한 것이 있다는 판단이다.",
+      "en": "Courage is not the absence of fear, but the judgment that something else is more important.",
+      "author": "Ambrose Redmoon",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "의미 있는 고통은 견딜 수 있다.",
+      "en": "Suffering with meaning can be endured.",
+      "author": "Viktor Frankl <Man's Search for Meaning 1946>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "상처는 빛이 당신에게 들어오는 자리이다.",
+      "en": "The wound is the place where the light enters you.",
+      "author": "Rumi (13세기 페르시아)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "당신이 느끼는 것은, 당신이 원하는 삶이 새어나오는 신호이다.",
+      "en": "What you feel is a signal of the life you are longing for.",
+      "author": "Rumi (현대 해석 🟡)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "네가 견딘 밤이 네 낮을 만든다.",
+      "en": "The nights you endured shape the days you live.",
+      "author": "작자미상",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "눈물은 바다의 가장 작은 모습이다.",
+      "en": "Tears are the smallest form of the sea.",
+      "author": "Rainer Maria Rilke (의역 🟡)",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "영웅은 보통 사람보다 5분 더 용감할 뿐이다.",
+      "en": "A hero is no braver than an ordinary man, but he is brave five minutes longer.",
+      "author": "Ralph Waldo Emerson",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "권력은 부패하는 경향이 있고, 절대권력은 절대적으로 부패한다.",
+      "en": "Power tends to corrupt, and absolute power corrupts absolutely.",
+      "author": "Lord Acton (1887)",
+      "tag": "경영"
+    },
+    {
+      "ko": "일시적 안전을 위해 본질적 자유를 포기하는 자는, 둘 다 누릴 자격이 없다.",
+      "en": "Those who give up essential liberty for temporary safety deserve neither.",
+      "author": "Benjamin Franklin (1755)",
+      "tag": "경영"
+    },
+    {
+      "ko": "역사는 반복되지 않지만 운율을 맞춘다.",
+      "en": "History does not repeat itself, but it rhymes.",
+      "author": "Mark Twain (귀속 🟡)",
+      "tag": "경영"
+    },
+    {
+      "ko": "민주주의는 최악의 정부 형태다 — 지금껏 시도된 다른 모든 것을 제외하면.",
+      "en": "Democracy is the worst form of government, except for all the others.",
+      "author": "Winston Churchill (1947)",
+      "tag": "경영"
+    },
+    {
+      "ko": "모든 국민은 자기 수준의 정부를 가진다.",
+      "en": "Every nation gets the government it deserves.",
+      "author": "Joseph de Maistre (1811)",
+      "tag": "경영"
+    },
+    {
+      "ko": "평범한 악 (banality of evil).",
+      "en": "The banality of evil.",
+      "author": "Hannah Arendt <Eichmann in Jerusalem 1963>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "관료제는 아무도 책임지지 않는 전제정이다.",
+      "en": "Bureaucracy is tyranny without a tyrant.",
+      "author": "Hannah Arendt <Crises of the Republic 1972>",
+      "tag": "경영"
+    },
+    {
+      "ko": "언어의 한계가 내 세계의 한계이다.",
+      "en": "The limits of my language are the limits of my world.",
+      "author": "Ludwig Wittgenstein <Tractatus 5.6>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "말할 수 없는 것에 대해서는 침묵해야 한다.",
+      "en": "Whereof one cannot speak, thereof one must be silent.",
+      "author": "Ludwig Wittgenstein <Tractatus 7>",
+      "tag": "자기성찰"
+    },
+    {
+      "ko": "자유의 대가는 영원한 경계이다.",
+      "en": "The price of freedom is eternal vigilance.",
+      "author": "Thomas Jefferson (귀속 🟡)",
+      "tag": "경영"
     }
   ]
 }
