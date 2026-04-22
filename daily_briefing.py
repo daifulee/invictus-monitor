@@ -476,18 +476,20 @@ def build_ssot_embed(d=None):
     Top7 블록은 Discord H2(## 1.5배) + 1종목/줄 카드형 포맷."""
     weights=calc_target_weights()
     order=["GLD","XLE","SMH","EWZ","SLV","COPX","NLR","PAVE","RP"]
-    # 한 줄 1종목: 이모지 │ 티커(굵게) │ 비중 │ 설명
+    # 한 줄 1종목: 순위 │ 이모지 │ 티커(굵게) │ 비중 │ 설명
     ticker_desc={
         "GLD":"금 ETF","XLE":"미 에너지","SMH":"반도체","EWZ":"브라질",
         "SLV":"은 ETF","COPX":"구리광산","NLR":"원자력","PAVE":"인프라","RP":"현금성"
     }
+    # 비중 내림차순 정렬
+    ranked=sorted(order,key=lambda tk:weights.get(tk,0),reverse=True)
     lines_w=[]
-    for tk in order:
+    for i,tk in enumerate(ranked,1):
         v=weights.get(tk,0)
         em=EMOJIS.get(tk,"💵" if tk=="RP" else "")
         desc_tk=ticker_desc.get(tk,"")
         # ## H2 헤더로 각 종목을 1.5배 크기로 렌더링
-        lines_w.append(f"## {em} **{tk}** `{v:5.1f}%`  _{desc_tk}_")
+        lines_w.append(f"## `{i}.` {em} **{tk}** `{v:5.1f}%`  _{desc_tk}_")
     total=sum(OFFICIAL_PROBS.values()) or 1.0
     sc_lines=[]
     for k,prob in OFFICIAL_PROBS.items():
