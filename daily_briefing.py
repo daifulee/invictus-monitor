@@ -472,14 +472,22 @@ def compare_ssot(probs_poly):
 
 def build_ssot_embed(d=None):
     """§1.5 공식 SSOT 확률 + Top7 목표비중 (로컬 계산).
-    d가 주어지면 GLD 50MA 감시 추가 (메모리 #12 기반)."""
+    d가 주어지면 GLD 50MA 감시 추가 (메모리 #12 기반).
+    Top7 블록은 Discord H2(## 1.5배) + 1종목/줄 카드형 포맷."""
     weights=calc_target_weights()
     order=["GLD","XLE","SMH","EWZ","SLV","COPX","NLR","PAVE","RP"]
+    # 한 줄 1종목: 이모지 │ 티커(굵게) │ 비중 │ 설명
+    ticker_desc={
+        "GLD":"금 ETF","XLE":"미 에너지","SMH":"반도체","EWZ":"브라질",
+        "SLV":"은 ETF","COPX":"구리광산","NLR":"원자력","PAVE":"인프라","RP":"현금성"
+    }
     lines_w=[]
     for tk in order:
         v=weights.get(tk,0)
         em=EMOJIS.get(tk,"💵" if tk=="RP" else "")
-        lines_w.append(f"{em}**{tk}** {v}%")
+        desc_tk=ticker_desc.get(tk,"")
+        # ## H2 헤더로 각 종목을 1.5배 크기로 렌더링
+        lines_w.append(f"## {em} **{tk}** `{v:5.1f}%`  _{desc_tk}_")
     total=sum(OFFICIAL_PROBS.values()) or 1.0
     sc_lines=[]
     for k,prob in OFFICIAL_PROBS.items():
@@ -505,12 +513,15 @@ def build_ssot_embed(d=None):
                 ma_line=f"\n🟢 GLD 50MA 상회 (${p:.2f} ≥ ${ma50:.2f}, {gap_pct:+.2f}%) → Override 유지"
     desc=(
         f"**🎯 공식 SSOT 확률** (Commander 승인, 환경변수 오버라이드 가능)\n"
-        f"{' │ '.join(sc_lines)}\n\n"
-        f"**📊 Top7 목표비중** (공식확률×프리셋 가중평균)\n"
-        f"{' │ '.join(lines_w)}"
+        f"{' │ '.join(sc_lines)}\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"### 📊 Top7 목표비중\n"
+        f"_공식확률 × 프리셋 가중평균_\n"
+        +"\n".join(lines_w)+
+        f"\n━━━━━━━━━━━━━━━━━━━━━━━"
         f"{override_line}"
         f"{ma_line}\n"
-        f"\n_합계 {sum(weights.values()):.1f}% / RP는 현금성 / 환경변수: SSOT_A/B/C/D, GLD_OVERRIDE_"
+        f"\n_합계 **{sum(weights.values()):.1f}%** / RP는 현금성 / 환경변수: SSOT_A/B/C/D, GLD_OVERRIDE_"
     )
     return {"title":"§1.5 🎯 공식 SSOT │ Top7 목표비중","color":0xD4AF37,"description":desc}
 
