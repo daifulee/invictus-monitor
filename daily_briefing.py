@@ -1,5 +1,17 @@
 #!/usr/bin/env python3
-"""INVICTUS 모닝 브리핑 v5.0 — 전 지표 신호등 + 모멘텀 순위 + Polymarket §3.5
+"""INVICTUS 모닝 브리핑 v5.1 — Discord 참고용 (REG-025 해소)
+
+[v5.1 변경사항 (2026-04-23 🅐 Commander 승인)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔴 REG-025 DUAL-ENGINE-DIVERGENCE 해소:
+  - yh(tk,"1y") → yh(tk,"18mo")  (ETF 20종 Legio mom_score용)
+  - 사유: Yahoo range="1y"는 252 거래일 반환 → mom(h,252) 요구 len≥253
+          → r12m 자동 None → 가중치 재배분 (0.15→0.45 r6m 흡수)
+          → Main Legio v2.11.2 대비 10종 전부 L1 체계 차이 (Δ ≈ 0.02~0.07)
+  - "18mo" = 약 380 거래일 → r12m 정상 산출 → Main SSOT와 정합
+  - BT 영향: 0 (Discord는 참고용, Main SSOT 불변)
+  - Commander 지침: "Discord는 단지 참고용, Main Legio가 SSOT"
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [v5.0 변경사항 (2026-04-22 §0.0 준수)]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -19,7 +31,8 @@
   ✅ §7~§8 SOLIDUS BTC LIVE
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-디스코드용 경량 브리핑. LIVE 비중 산출은 Claude 정기 브리핑 전용.
+디스코드용 경량 브리핑 (참고용). LIVE 비중 산출은 Claude 정기 브리핑 전용.
+Main SSOT: Legio v2.11.2 + Oracle v2.13.1 + pipeline v1.3.9 + Brief v1.8.9.
 """
 import os,requests,json,random,math
 from datetime import datetime,timezone,timedelta
@@ -280,7 +293,10 @@ def fetch():
     # 종목별
     hdata={}
     for tk in TICKERS:
-        h=yh(tk,"1y");p=h[-1] if h else yp(tk)
+        # [REG-025 해소, 2026-04-23] range "1y"=252일 → r12m 누락 버그
+        #   mom(h,252)는 len(h)<253이면 None → 가중치 재배분 → Main Legio와 L1 체계 불일치
+        #   "18mo"로 380일 확보하여 r12m 정상 산출 → Main SSOT와 정합
+        h=yh(tk,"18mo");p=h[-1] if h else yp(tk)
         ms=legio_mom_score(h)
         rsi=compute_rsi(h)
         w52=w52_distance(h)
