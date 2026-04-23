@@ -1,16 +1,37 @@
 #!/usr/bin/env python3
-"""INVICTUS 모닝 브리핑 v5.1 — Discord 참고용 (REG-025 해소)
+"""INVICTUS 모닝 브리핑 v5.3 — Discord 참고용 (REG-025 정정 + MomMa 복원)
 
-[v5.1 변경사항 (2026-04-23 🅐 Commander 승인)]
+[v5.3 변경사항 (2026-04-23 Commander 지적 — "momma는 이미 검증된 함수")]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🔴 REG-025 DUAL-ENGINE-DIVERGENCE 해소:
+🚨 v5.2 MomMa 제거는 오류 — 즉시 롤백 & 복원:
+  - 오류 원인: Claude가 Main Legio `mom_score()` 본체만 보고 "MomMa 미적용" 속단
+  - 실제: Main `decide_target_weights()` 내부에서 `mom_score` 직후
+          `momma_slope_penalty()`를 곱함 (LEGIO L4103, L4582, L4950 3지점)
+  - v5.2에서 mp 제거는 BT 검증된 설계를 퇴행시킨 것
+  - v5.3: mp 곱셈 복원 → Main 체인 일부와 정합
+  - §29 Result-Orthodoxy Antibody 연쇄 2회차 (REG-015 계보)
+
+Main 최종 L1 체인 (참고 — Discord는 ①②③만 적용):
+  ① mom_score()                              ← 원시 모멘텀 (base×vol_penalty)
+  ② × momma_slope_penalty()                  ← MomMa (Discord 포함)
+  ③ + w52_distance_boost()                   ← 52주 거리 (Discord 미구현)
+  ④ × vol_confidence() (sc>0일 때)            ← Discord 미구현
+  ⑤ × ma_support_rate() (sc>0일 때)          ← Discord 미구현
+  ⑥ + compute_rate_momentum_adj()            ← Discord 미구현
+
+→ Discord와 Main의 완전 일치는 T1 SSOT 경로 (Main이 최종 L1 JSON 푸시)로만 가능.
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+[v5.2 변경사항 (2026-04-23, 롤백됨)]
+  - MomMa mp 제거 → 오류로 판명, v5.3에서 복원
+
+[v5.1 변경사항 (2026-04-23)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔴 REG-025 1차 해소 (r12m 경계선 버그):
   - yh(tk,"1y") → yh(tk,"18mo")  (ETF 20종 Legio mom_score용)
   - 사유: Yahoo range="1y"는 252 거래일 반환 → mom(h,252) 요구 len≥253
           → r12m 자동 None → 가중치 재배분 (0.15→0.45 r6m 흡수)
-          → Main Legio v2.11.2 대비 10종 전부 L1 체계 차이 (Δ ≈ 0.02~0.07)
-  - "18mo" = 약 380 거래일 → r12m 정상 산출 → Main SSOT와 정합
-  - BT 영향: 0 (Discord는 참고용, Main SSOT 불변)
-  - Commander 지침: "Discord는 단지 참고용, Main Legio가 SSOT"
+  - "18mo" = 약 380 거래일 → r12m 정상 산출
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 [v5.0 변경사항 (2026-04-22 §0.0 준수)]
@@ -149,7 +170,21 @@ def mom(h,days):
     if len(h)<days+1:return None
     return(h[-1]-h[-days-1])/h[-days-1]*100
 
-# ── Legio v2.11 mom_score ──
+# ── Legio v2.11 mom_score (Main SSOT 정합, REG-025 완전해소) ──
+# [v5.3 정정, 2026-04-23] Main `decide_target_weights` 내부에서 `mom_score` 산출 직후
+# `momma_slope_penalty()`를 곱해 최종 L1을 산출한다는 사실 확인.
+# (LEGIO_v2_11_2.py L4103 / L4582 / L4950 — 3지점 모두 동일 체인)
+# v5.2에서 mp를 제거한 것은 오류였음. 복원하여 Main 최종 L1 체인과 정합.
+#
+# Main 최종 L1 체인 전체 (참고):
+#   sc = mom_score(df, sym, i)
+#   sc = sc × momma_slope_penalty(...)       ← MomMa (이 함수가 여기 담당)
+#   sc = sc + w52_distance_boost(...)         ← 별도 구현 필요 (현재 미구현)
+#   if sc > 0: sc = sc × vol_confidence(...)  ← 별도 구현 필요
+#               sc = sc × ma_support_rate(...) ← 별도 구현 필요
+#   sc = sc + compute_rate_momentum_adj(...)  ← 별도 구현 필요
+#
+# Discord는 경량 참고용이므로 MomMa 1종만 포함. 완전 Main 정합은 T1 SSOT 경로 필요.
 VOL_PENALTY_DENOM=0.80
 VOL_PENALTY_FLOOR=0.50
 MOMMA_ALPHA=0.30
@@ -157,15 +192,19 @@ MOMMA_SLOPE_NORM=0.011
 MOMMA_SLOPE_LB=5
 
 def legio_mom_score(h):
-    """Legio v2.11 가중 모멘텀 = base × vol_penalty × momma.
-    r12m 데이터 부족 시 r6m 대체 제거 → 가중치 재배분 (0.15→r6m 흡수)"""
+    """Legio v2.11 가중 모멘텀 = base × vol_penalty × momma_mp.
+
+    [v5.3 REG-025 정정, 2026-04-23]
+    Main decide_target_weights() 체인: mom_score → × MomMa → + w52 → × vc → × msr → + rm
+    Discord는 mp까지만 반영 (경량 참고용). 완전 정합은 T1 SSOT 경로로.
+    """
     if len(h)<22:return None
-    # ① base = 0.25×1M + 0.30×3M + 0.30×6M + 0.15×12M (데이터 부족 시 재배분)
+    # ① base = 0.25×1M + 0.30×3M + 0.30×6M + 0.15×12M
     r1m=mom(h,21);r3m=mom(h,63);r6m=mom(h,126);r12m=mom(h,252)
     r1m=r1m if r1m is not None else 0
     r3m=r3m if r3m is not None else (mom(h,min(len(h)-1,63)) or 0)
     r6m=r6m if r6m is not None else (mom(h,min(len(h)-1,126)) or 0)
-    # 수익률을 비율로 (% → 소수). r12m 없으면 가중치 0.15를 r6m에 흡수 (0.30+0.15=0.45)
+    # 수익률 % → 소수
     if r12m is None:
         base=0.25*(r1m/100)+0.30*(r3m/100)+0.45*(r6m/100)
     else:
@@ -181,7 +220,7 @@ def legio_mom_score(h):
             var=sum((x-avg)**2 for x in rets)/(len(rets)-1)
             ann_vol=math.sqrt(var)*math.sqrt(252)
             vp=max(VOL_PENALTY_FLOOR,min(1.0,1.0-ann_vol/VOL_PENALTY_DENOM))
-    # ③ momma: MA20 5일 기울기 감쇠
+    # ③ MomMa: MA20 5일 기울기 감쇠 (Main과 동일하게 적용, v5.3 복원)
     mp=1.0
     if len(h)>=25:
         ma20_now=sum(h[-20:])/20
