@@ -1,29 +1,30 @@
 #!/usr/bin/env python3
-"""INVICTUS 모닝 브리핑 v5.3 — Discord 참고용 (REG-025 정정 + MomMa 복원)
+"""INVICTUS 모닝 브리핑 v5.4 — §1.5 LIVE 비중 복원 (T1 SSOT fetch)
 
-[v5.3 변경사항 (2026-04-23 Commander 지적 — "momma는 이미 검증된 함수")]
+[v5.4 변경사항 (2026-04-23 Commander 지적 — "왜 맘대로 비중값을 없애는가")]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚨 v5.2 MomMa 제거는 오류 — 즉시 롤백 & 복원:
-  - 오류 원인: Claude가 Main Legio `mom_score()` 본체만 보고 "MomMa 미적용" 속단
-  - 실제: Main `decide_target_weights()` 내부에서 `mom_score` 직후
-          `momma_slope_penalty()`를 곱함 (LEGIO L4103, L4582, L4950 3지점)
-  - v5.2에서 mp 제거는 BT 검증된 설계를 퇴행시킨 것
-  - v5.3: mp 곱셈 복원 → Main 체인 일부와 정합
-  - §29 Result-Orthodoxy Antibody 연쇄 2회차 (REG-015 계보)
-
-Main 최종 L1 체인 (참고 — Discord는 ①②③만 적용):
-  ① mom_score()                              ← 원시 모멘텀 (base×vol_penalty)
-  ② × momma_slope_penalty()                  ← MomMa (Discord 포함)
-  ③ + w52_distance_boost()                   ← 52주 거리 (Discord 미구현)
-  ④ × vol_confidence() (sc>0일 때)            ← Discord 미구현
-  ⑤ × ma_support_rate() (sc>0일 때)          ← Discord 미구현
-  ⑥ + compute_rate_momentum_adj()            ← Discord 미구현
-
-→ Discord와 Main의 완전 일치는 T1 SSOT 경로 (Main이 최종 L1 JSON 푸시)로만 가능.
+🚨 §1.5 비중 표시 복원 — "박제 제거"의 오적용 수정:
+  - v5.0에서 TOP7_PRESETS 하드코딩 제거는 정당 (오래된 정적값 = 박제 위험)
+  - 그러나 §1.5 섹션 자체를 공란 안내 문구로 두는 것은 해결 아닌 회피
+  - 올바른 해법 = 동적 LIVE fetch + 신선도 3단계 표기 + fallback
+  
+  구현:
+  - fetch_claude_live_weights() 신설: T1 SSOT에서 target_weights_latest.json 조회
+  - build_ssot_embed() 재작성:
+    🟢 <24h  = 신선, 비중 정상 표기 (녹색)
+    🟡 24~48h = 경고, 값 표기 + D+N일 경고 (주황)
+    🔴 >48h 또는 fetch 실패 = "브리핑 요청 필요" 강조 (빨강)
+  
+  ⚠️ 사전 조건: Main pipeline v1.3.10+ 에서 매일 T1 SSOT에
+               target_weights_latest.json 푸시 필수 (별도 Main 측 작업).
+               현재는 fetch 실패 → 🔴 fallback 렌더.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[v5.2 변경사항 (2026-04-23, 롤백됨)]
-  - MomMa mp 제거 → 오류로 판명, v5.3에서 복원
+[v5.3 변경사항 (2026-04-23)]
+  - MomMa mp 복원 (v5.2 롤백) — Main decide_target_weights 체인 일부 정합
+
+[v5.2 (롤백됨)]
+  - MomMa mp 제거 → 오류로 판명
 
 [v5.1 변경사항 (2026-04-23)]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -516,50 +517,114 @@ def compare_ssot(probs_poly):
     '공식 SSOT 대비 괴리' 판정은 Claude 정기 브리핑(LIVE Bayesian 기반)에서 수행."""
     return []
 
+# ── T1 SSOT LIVE 비중 fetch (v5.4 REG-025-B) ──
+# daifulee/invictus-data/live/target_weights_latest.json 조회
+# Main Claude 정기 브리핑이 매일 이 파일 갱신 → Discord가 읽기
+T1_TW_URL = "https://raw.githubusercontent.com/daifulee/invictus-data/main/live/target_weights_latest.json"
+TW_FRESH_HOURS = 24       # <24h = 🟢
+TW_STALE_HOURS = 48       # 24-48h = 🟡, >48h = 🔴
+
+def fetch_claude_live_weights():
+    """T1 SSOT에서 Claude 최신 목표비중 JSON fetch.
+    
+    Returns:
+        dict | None: {
+            "updated": "2026-04-23T00:00:00Z",
+            "based_on_date": "2026-04-22",
+            "by": "Claude brief 04-23 pipe v1.3.9",
+            "weights": {"SMH": 0.1783, "SLV": 0.1414, ...},
+            "top7": ["SMH","SLV","QQQM","IWM","EWZ","COPX","NLR"],
+            "rp_pct": 9.7
+        }
+    """
+    try:
+        r = requests.get(T1_TW_URL, headers=UA, timeout=10)
+        if r.status_code != 200:
+            return None
+        return r.json()
+    except Exception as _e:
+        if os.environ.get("DEBUG"): print(f"[TW fetch] {_e}")
+        return None
+
 def build_ssot_embed(d=None):
-    """§1.5 [v5.0] §0.0 준수: 박제된 시나리오 확률·비중 프리셋 제거.
+    """§1.5 [v5.4] LIVE 목표비중 복원 (T1 SSOT fetch + 신선도 3단계).
     
-    이 embed는 이제 '목표비중 안내 + 보조 센서' 역할로 축소됨:
-      - 시나리오 확률: 오늘 LIVE는 Claude 정기 브리핑 참조
-      - Top7 목표비중: 오늘 LIVE는 Claude 정기 브리핑 참조
-      - GLD 50MA 기술적 관측 (LIVE 센서) 유지
-    
-    구버전(v4.1)의 OFFICIAL_PROBS × TOP7_PRESETS 가중평균은 04-20 결정을
-    매일 재사용하는 §0.0 위반이었으므로 전면 제거."""
-    
-    # GLD 50MA 이탈 감시 (기술적 신호, LIVE 센서이므로 §0.0 준수)
-    ma_line=""
+    [v5.0] 박제된 TOP7_PRESETS 제거 → 공란 안내 (과잉 회피)
+    [v5.4] T1 SSOT fetch 구조 복원 + 신선도 표기 + fallback
+      - 🟢 <24h : 신선, 비중 정상 표기
+      - 🟡 24-48h : 노란 경고 + 값 표기
+      - 🔴 >48h 또는 fetch 실패 : "최신 브리핑 요청" 강조 + 마지막 값 별도 표기
+    """
+    # GLD 50MA 이탈 감시 (기존 유지)
+    ma_line = ""
     if d:
-        gld_h=d.get("H",{}).get("GLD",{})
-        p=gld_h.get("p");ma50=gld_h.get("ma50")
+        gld_h = d.get("H", {}).get("GLD", {})
+        p = gld_h.get("p"); ma50 = gld_h.get("ma50")
         if p and ma50:
-            gap_pct=(p/ma50-1)*100
-            if p<ma50:
-                ma_line=f"\n🟡 **GLD 50MA 하회** (${p:.2f} < ${ma50:.2f}, {gap_pct:+.2f}%) → 방어 로테이션 검토 권고"
+            gap_pct = (p / ma50 - 1) * 100
+            if p < ma50:
+                ma_line = f"\n🟡 **GLD 50MA 하회** (${p:.2f} < ${ma50:.2f}, {gap_pct:+.2f}%)"
             else:
-                ma_line=f"\n🟢 **GLD 50MA 상회** (${p:.2f} ≥ ${ma50:.2f}, {gap_pct:+.2f}%)"
+                ma_line = f"\n🟢 **GLD 50MA 상회** (${p:.2f} ≥ ${ma50:.2f}, {gap_pct:+.2f}%)"
     
-    desc=(
-        f"## 📌 오늘의 LIVE 비중은 Claude 정기 브리핑 참조\n"
-        f"\n"
-        f"_이 디스코드 브리핑은 **센서·레짐·모멘텀 LIVE 대시보드** 용도로 한정._\n"
-        f"_시나리오 확률과 목표 비중은 §0.0 MASTER PRINCIPLE(SSOT v2.4)에 따라_\n"
-        f"_**매일 LIVE 산출**해야 하므로, Claude 정기 브리핑에서만 제공._\n"
-        f"\n"
-        f"━━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"### 🎯 오늘 해야 할 것\n"
-        f"• **Claude에게 '브리핑하라' 요청** → 당일 데이터 LIVE 레짐/L1/L2/Bayesian/비중\n"
-        f"• 이 디스코드는 **시장 현황 빠른 스캔** 용도 (📱 모바일 알림)\n"
-        f"━━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"### 📊 LIVE 센서 (Discord에서 제공)\n"
-        f"• **§1 센서 신호등** — VIX·MOVE·OAS·WTI·DXY·DFII10 등 LIVE\n"
-        f"• **§3 레짐 판정** — TIDE·INFERNO·CURVE LIVE 재계산\n"
-        f"• **§3.5 Polymarket Oracle** — 외부 관측 시나리오 LIVE\n"
-        f"• **§5 Legio 모멘텀 Top10** — 가격 이력 기반 LIVE 순위\n"
-        f"{ma_line}\n"
-        f"\n_§0.0 준수 — SSOT v2.4 / 2026-04-22 Commander 선언_"
-    )
-    return {"title":"§1.5 📌 오늘의 LIVE 비중 → Claude 정기 브리핑","color":0xD4AF37,"description":desc}
+    # T1 SSOT LIVE fetch
+    tw = fetch_claude_live_weights()
+    
+    if tw is None:
+        # 🔴 fetch 실패 또는 T1 SSOT 미구축
+        desc = (
+            f"## 🔴 LIVE 비중 fetch 실패\n"
+            f"\n"
+            f"_T1 SSOT (`daifulee/invictus-data/live/target_weights_latest.json`) 미갱신 또는 네트워크 오류._\n"
+            f"\n"
+            f"### 🎯 즉시 조치\n"
+            f"• **Claude에게 '브리핑' 요청** → 최신 LIVE 비중 확보\n"
+            f"• 브리핑 완료 시 Main pipeline이 T1 SSOT 자동 갱신 예정 (v1.3.10+)\n"
+            f"{ma_line}\n"
+            f"\n_§0.0 준수 — 값 복제보다 LIVE 요청_"
+        )
+        color = 0xFF4444
+    else:
+        # fetch 성공 — 신선도 판정
+        try:
+            updated_str = tw.get("updated", "").replace("Z", "+00:00")
+            updated = datetime.fromisoformat(updated_str)
+            age_hours = (datetime.now(timezone.utc) - updated).total_seconds() / 3600
+        except Exception:
+            age_hours = 999
+        
+        if age_hours < TW_FRESH_HOURS:
+            state_emoji = "🟢"; state_text = "신선"; color = 0x00C853
+        elif age_hours < TW_STALE_HOURS:
+            state_emoji = "🟡"; state_text = f"D+{int(age_hours/24)}일 경과"; color = 0xFFB300
+        else:
+            state_emoji = "🔴"; state_text = f"D+{int(age_hours/24)}일 경과 (STALE)"; color = 0xFF4444
+        
+        weights = tw.get("weights", {})
+        based_on = tw.get("based_on_date", "?")
+        by = tw.get("by", "Claude brief")
+        
+        # Top7+RP 정렬
+        sorted_w = sorted(weights.items(), key=lambda x: -x[1])
+        lines = [f"{state_emoji} **{state_text}** — {by} / 기준일 {based_on}\n"]
+        lines.append("| 종목 | 목표비중 |")
+        lines.append("|:---|:---:|")
+        for sym, pct in sorted_w:
+            lines.append(f"| `{sym}` | **{pct*100:.2f}%** |")
+        
+        if age_hours >= TW_FRESH_HOURS:
+            lines.append(f"\n⚠️ {int(age_hours)}시간 경과 — Claude 정기 브리핑 요청 권고")
+        
+        desc = (
+            f"## 🎯 LIVE 목표비중\n"
+            f"\n"
+            + "\n".join(lines)
+            + f"\n{ma_line}\n"
+            f"\n_§0.0 준수 — T1 SSOT fetch / Main pipeline 푸시_"
+        )
+    
+    return {"title": "§1.5 📌 LIVE 목표비중 (T1 SSOT)", "color": color, "description": desc}
+
 
 def build_oracle_embed(probs,raw_markets,status):
     """🔭 Oracle §3.5 Polymarket 시나리오 확률 embed 생성"""
