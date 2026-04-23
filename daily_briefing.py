@@ -1,5 +1,26 @@
 #!/usr/bin/env python3
-"""INVICTUS 모닝 브리핑 v4.1 — 전 지표 신호등 + 모멘텀 순위 + Polymarket §3.5"""
+"""INVICTUS 모닝 브리핑 v5.0 — 전 지표 신호등 + 모멘텀 순위 + Polymarket §3.5
+
+[v5.0 변경사항 (2026-04-22 §0.0 준수)]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+🔴 SSOT §0.0 MASTER PRINCIPLE 준수를 위한 박제 제거:
+  - OFFICIAL_PROBS (04-20 시나리오 확률 하드코딩) → 삭제
+  - TOP7_PRESETS (04-20 비중 프리셋 하드코딩) → 삭제
+  - calc_target_weights() (박제 기반 가중평균) → 삭제
+  - build_ssot_embed() (§1.5) → "LIVE 비중은 Claude 정기 브리핑 참조" 안내로 교체
+  - compare_ssot() (Polymarket vs 박제 공식값 괴리 경고) → 삭제
+  - GLD_OVERRIDE 편차 감시 (Override 기본값 37.5 박제) → 삭제
+
+유지된 LIVE 컴포넌트:
+  ✅ §1 센서 신호등 (Yahoo/FRED 실시간 조회)
+  ✅ §3 레짐 LIVE 판정 (calc_tide/inferno/curve/gradient)
+  ✅ §3.5 Polymarket Oracle (Polymarket LIVE 조회)
+  ✅ §5 Legio 모멘텀 Top10 (Yahoo 가격 이력 LIVE 산출)
+  ✅ §7~§8 SOLIDUS BTC LIVE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+디스코드용 경량 브리핑. LIVE 비중 산출은 Claude 정기 브리핑 전용.
+"""
 import os,requests,json,random,math
 from datetime import datetime,timezone,timedelta
 DISCORD_WEBHOOK=os.environ.get("DISCORD_WEBHOOK","")
@@ -8,33 +29,15 @@ KST=timezone(timedelta(hours=9))
 UA={"User-Agent":"Mozilla/5.0 (iPhone; CPU iPhone OS 17_0 like Mac OS X)"}
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-# 🎯 공식 SSOT (Commander 승인) — 환경변수 기반, 기본값 2026-04-20 기준
-# Polymarket Oracle(§3.5)와 별개: 내부 판단 전쟁 시나리오 A/B/C/D
-# A=종전 / B=교착 / C=⭐재격화(메인) / D=복합위기
+# 🔴 §0.0 준수: 시나리오 확률·목표비중 박제 상수 제거됨 (v5.0)
+# 
+# 구버전(v4.1)은 OFFICIAL_PROBS / TOP7_PRESETS / calc_target_weights()를
+# 통해 04-20 결정을 매일 그대로 재사용했으나, 이는 §0.0 MASTER PRINCIPLE
+# (SSOT v2.4) 위반이므로 전면 제거.
+#
+# 현재 날짜 LIVE 시나리오 확률·목표 비중은 Claude 정기 브리핑에서만 제공.
+# Discord는 센서·레짐·모멘텀 LIVE 대시보드 용도로 한정.
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-OFFICIAL_PROBS={
-    "A":float(os.environ.get("SSOT_A",5)),
-    "B":float(os.environ.get("SSOT_B",20)),
-    "C":float(os.environ.get("SSOT_C",65)),
-    "D":float(os.environ.get("SSOT_D",10)),
-}
-SCENARIO_LABELS_OFFICIAL={"A":"🕊️ A 종전","B":"⚖️ B 교착","C":"🔥 C 재격화","D":"💀 D 복합위기"}
-# Top7+보조 종목별 프리셋 (Commander 승인 2026-04-20, 단위=%)
-TOP7_PRESETS={
-    "A":{"GLD":22,"XLE":8, "SMH":15,"EWZ":12,"SLV":8, "COPX":7,"NLR":4.5,"PAVE":5,  "RP":18.5},
-    "B":{"GLD":25,"XLE":14,"SMH":12,"EWZ":10,"SLV":10,"COPX":9,"NLR":5.5,"PAVE":4.5,"RP":10  },
-    "C":{"GLD":28,"XLE":18,"SMH":10,"EWZ":10,"SLV":12,"COPX":9,"NLR":5,  "PAVE":3,  "RP":5   },
-    "D":{"GLD":35,"XLE":5, "SMH":5, "EWZ":5, "SLV":8, "COPX":5,"NLR":5,  "PAVE":2,  "RP":30  },
-}
-def calc_target_weights():
-    """공식 SSOT 확률 × Top7 프리셋 가중평균"""
-    total=sum(OFFICIAL_PROBS.values()) or 1.0
-    norm={k:v/total for k,v in OFFICIAL_PROBS.items()}
-    w={}
-    for sc,p in norm.items():
-        for tk,val in TOP7_PRESETS[sc].items():
-            w[tk]=w.get(tk,0)+val*p
-    return {k:round(v,1) for k,v in w.items()}
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 # 📅 D-day 이벤트 레지스트리 (환경변수 오버라이드 가능)
@@ -453,56 +456,23 @@ def calc_oracle():
     return probs,raw_markets,status
 
 def compare_ssot(probs_poly):
-    """Polymarket S1~S4 vs 공식 A/B/C/D 괴리 경고 (매핑 주의).
-    단순 규칙: S1↔A(평화), S3+S4↔C+D(전쟁리스크) 합산 비교."""
-    try:
-        poly_peace=probs_poly.get("S1",0)
-        poly_risk=probs_poly.get("S3",0)+probs_poly.get("S4",0)
-        off_peace=OFFICIAL_PROBS["A"]
-        off_risk=OFFICIAL_PROBS["C"]+OFFICIAL_PROBS["D"]
-        gaps=[]
-        if abs(poly_peace-off_peace)>=15:
-            gaps.append(f"평화축 Poly {poly_peace}% vs 공식 {off_peace:.0f}% (Δ{poly_peace-off_peace:+.0f}p)")
-        if abs(poly_risk-off_risk)>=15:
-            gaps.append(f"리스크축 Poly {poly_risk}% vs 공식 {off_risk:.0f}% (Δ{poly_risk-off_risk:+.0f}p)")
-        return gaps
-    except Exception as e:
-        if os.environ.get("DEBUG"):print(f"[compare_ssot fail] {e}")
-        return []
+    """[v5.0] §0.0 준수: 박제된 공식값 제거로 인해 이 함수는 비활성화.
+    Polymarket 조회값은 §3.5에서 LIVE 그대로 표시되며, 
+    '공식 SSOT 대비 괴리' 판정은 Claude 정기 브리핑(LIVE Bayesian 기반)에서 수행."""
+    return []
 
 def build_ssot_embed(d=None):
-    """§1.5 공식 SSOT 확률 + Top7 목표비중 (로컬 계산).
-    d가 주어지면 GLD 50MA 감시 추가 (메모리 #12 기반).
-    Top7 블록은 Discord H2(## 1.5배) + 1종목/줄 카드형 포맷."""
-    weights=calc_target_weights()
-    order=["GLD","XLE","SMH","EWZ","SLV","COPX","NLR","PAVE","RP"]
-    # 한 줄 1종목: 순위 │ 이모지 │ 티커(굵게) │ 비중 │ 설명
-    ticker_desc={
-        "GLD":"금 ETF","XLE":"미 에너지","SMH":"반도체","EWZ":"브라질",
-        "SLV":"은 ETF","COPX":"구리광산","NLR":"원자력","PAVE":"인프라","RP":"현금성"
-    }
-    # 비중 내림차순 정렬
-    ranked=sorted(order,key=lambda tk:weights.get(tk,0),reverse=True)
-    lines_w=[]
-    for i,tk in enumerate(ranked,1):
-        v=weights.get(tk,0)
-        em=EMOJIS.get(tk,"💵" if tk=="RP" else "")
-        desc_tk=ticker_desc.get(tk,"")
-        # ## H2 헤더로 각 종목을 1.5배 크기로 렌더링
-        lines_w.append(f"## `{i}.` {em} **{tk}** `{v:5.1f}%`  _{desc_tk}_")
-    total=sum(OFFICIAL_PROBS.values()) or 1.0
-    sc_lines=[]
-    for k,prob in OFFICIAL_PROBS.items():
-        pct=prob/total*100
-        star="⭐" if k=="C" else ""
-        sc_lines.append(f"{SCENARIO_LABELS_OFFICIAL[k]}{star} **{pct:.0f}%**")
-    # GLD Override 편차 감시 (비중 차이)
-    GLD_OVERRIDE=float(os.environ.get("GLD_OVERRIDE",37.5))
-    gld_target=weights.get("GLD",0)
-    gld_delta=GLD_OVERRIDE-gld_target
-    gld_dot="🟢" if abs(gld_delta)<=3 else("🟡" if abs(gld_delta)<=10 else"🔴")
-    override_line=f"\n{gld_dot} **GLD Override 편차**: 공식계산 **{gld_target}%** vs Override **{GLD_OVERRIDE}%** (Δ{gld_delta:+.1f}%p)"
-    # GLD 50MA 이탈 감시 (기술적 신호, 메모리 #12)
+    """§1.5 [v5.0] §0.0 준수: 박제된 시나리오 확률·비중 프리셋 제거.
+    
+    이 embed는 이제 '목표비중 안내 + 보조 센서' 역할로 축소됨:
+      - 시나리오 확률: 오늘 LIVE는 Claude 정기 브리핑 참조
+      - Top7 목표비중: 오늘 LIVE는 Claude 정기 브리핑 참조
+      - GLD 50MA 기술적 관측 (LIVE 센서) 유지
+    
+    구버전(v4.1)의 OFFICIAL_PROBS × TOP7_PRESETS 가중평균은 04-20 결정을
+    매일 재사용하는 §0.0 위반이었으므로 전면 제거."""
+    
+    # GLD 50MA 이탈 감시 (기술적 신호, LIVE 센서이므로 §0.0 준수)
     ma_line=""
     if d:
         gld_h=d.get("H",{}).get("GLD",{})
@@ -510,22 +480,31 @@ def build_ssot_embed(d=None):
         if p and ma50:
             gap_pct=(p/ma50-1)*100
             if p<ma50:
-                ma_line=f"\n🟡 **GLD 50MA 하회** (${p:.2f} < ${ma50:.2f}, {gap_pct:+.2f}%) → Override 해제 검토 권고"
+                ma_line=f"\n🟡 **GLD 50MA 하회** (${p:.2f} < ${ma50:.2f}, {gap_pct:+.2f}%) → 방어 로테이션 검토 권고"
             else:
-                ma_line=f"\n🟢 GLD 50MA 상회 (${p:.2f} ≥ ${ma50:.2f}, {gap_pct:+.2f}%) → Override 유지"
+                ma_line=f"\n🟢 **GLD 50MA 상회** (${p:.2f} ≥ ${ma50:.2f}, {gap_pct:+.2f}%)"
+    
     desc=(
-        f"**🎯 공식 SSOT 확률** (Commander 승인, 환경변수 오버라이드 가능)\n"
-        f"{' │ '.join(sc_lines)}\n"
+        f"## 📌 오늘의 LIVE 비중은 Claude 정기 브리핑 참조\n"
+        f"\n"
+        f"_이 디스코드 브리핑은 **센서·레짐·모멘텀 LIVE 대시보드** 용도로 한정._\n"
+        f"_시나리오 확률과 목표 비중은 §0.0 MASTER PRINCIPLE(SSOT v2.4)에 따라_\n"
+        f"_**매일 LIVE 산출**해야 하므로, Claude 정기 브리핑에서만 제공._\n"
+        f"\n"
         f"━━━━━━━━━━━━━━━━━━━━━━━\n"
-        f"### 📊 Top7 목표비중\n"
-        f"_공식확률 × 프리셋 가중평균_\n"
-        +"\n".join(lines_w)+
-        f"\n━━━━━━━━━━━━━━━━━━━━━━━"
-        f"{override_line}"
+        f"### 🎯 오늘 해야 할 것\n"
+        f"• **Claude에게 '브리핑하라' 요청** → 당일 데이터 LIVE 레짐/L1/L2/Bayesian/비중\n"
+        f"• 이 디스코드는 **시장 현황 빠른 스캔** 용도 (📱 모바일 알림)\n"
+        f"━━━━━━━━━━━━━━━━━━━━━━━\n"
+        f"### 📊 LIVE 센서 (Discord에서 제공)\n"
+        f"• **§1 센서 신호등** — VIX·MOVE·OAS·WTI·DXY·DFII10 등 LIVE\n"
+        f"• **§3 레짐 판정** — TIDE·INFERNO·CURVE LIVE 재계산\n"
+        f"• **§3.5 Polymarket Oracle** — 외부 관측 시나리오 LIVE\n"
+        f"• **§5 Legio 모멘텀 Top10** — 가격 이력 기반 LIVE 순위\n"
         f"{ma_line}\n"
-        f"\n_합계 **{sum(weights.values()):.1f}%** / RP는 현금성 / 환경변수: SSOT_A/B/C/D, GLD_OVERRIDE_"
+        f"\n_§0.0 준수 — SSOT v2.4 / 2026-04-22 Commander 선언_"
     )
-    return {"title":"§1.5 🎯 공식 SSOT │ Top7 목표비중","color":0xD4AF37,"description":desc}
+    return {"title":"§1.5 📌 오늘의 LIVE 비중 → Claude 정기 브리핑","color":0xD4AF37,"description":desc}
 
 def build_oracle_embed(probs,raw_markets,status):
     """🔭 Oracle §3.5 Polymarket 시나리오 확률 embed 생성"""
@@ -782,7 +761,7 @@ def build_solidus_embeds(sd):
     mcap_str=f"${mcap/1e12:.2f}T" if mcap else"N/A"
     desc1=(f"💰 **BTC** ${price_str}  ({_f(ch24,'%',2)})\n"
            f"📊 시가총액 {mcap_str}\n\n"
-           f"# 🎯 참고 목표비중: {target:.1f}%\n"
+           f"🎯 **참고 목표비중: {target:.1f}%**\n"
            f"⚠️ 경량 프록시 참고치 (지표 {n_ind}/5). 최종 결정은 👑Commander.")
     e1={"title":"§7 [Part 3] 🟠 SOLIDUS BTC 데일리","color":0xF7931A,"description":desc1}
     # Embed 2: 5지표 테이블 + 게이팅
