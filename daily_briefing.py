@@ -782,7 +782,7 @@ def build_solidus_embeds(sd):
     mcap_str=f"${mcap/1e12:.2f}T" if mcap else"N/A"
     desc1=(f"💰 **BTC** ${price_str}  ({_f(ch24,'%',2)})\n"
            f"📊 시가총액 {mcap_str}\n\n"
-           f"🎯 **참고 목표비중: {target:.1f}%**\n"
+           f"# 🎯 참고 목표비중: {target:.1f}%\n"
            f"⚠️ 경량 프록시 참고치 (지표 {n_ind}/5). 최종 결정은 👑Commander.")
     e1={"title":"§7 [Part 3] 🟠 SOLIDUS BTC 데일리","color":0xF7931A,"description":desc1}
     # Embed 2: 5지표 테이블 + 게이팅
