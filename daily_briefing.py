@@ -1,30 +1,19 @@
 #!/usr/bin/env python3
-"""INVICTUS 모닝 브리핑 v5.4 — §1.5 LIVE 비중 복원 (T1 SSOT fetch)
+"""INVICTUS 모닝 브리핑 v5.5 — T1 경로 교정 (/live → /data)
 
-[v5.4 변경사항 (2026-04-23 Commander 지적 — "왜 맘대로 비중값을 없애는가")]
+[v5.5 변경사항 (2026-04-23 Commander 지시)]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-🚨 §1.5 비중 표시 복원 — "박제 제거"의 오적용 수정:
-  - v5.0에서 TOP7_PRESETS 하드코딩 제거는 정당 (오래된 정적값 = 박제 위험)
-  - 그러나 §1.5 섹션 자체를 공란 안내 문구로 두는 것은 해결 아닌 회피
-  - 올바른 해법 = 동적 LIVE fetch + 신선도 3단계 표기 + fallback
-  
-  구현:
-  - fetch_claude_live_weights() 신설: T1 SSOT에서 target_weights_latest.json 조회
-  - build_ssot_embed() 재작성:
-    🟢 <24h  = 신선, 비중 정상 표기 (녹색)
-    🟡 24~48h = 경고, 값 표기 + D+N일 경고 (주황)
-    🔴 >48h 또는 fetch 실패 = "브리핑 요청 필요" 강조 (빨강)
-  
-  ⚠️ 사전 조건: Main pipeline v1.3.10+ 에서 매일 T1 SSOT에
-               target_weights_latest.json 푸시 필수 (별도 Main 측 작업).
-               현재는 fetch 실패 → 🔴 fallback 렌더.
+🔧 T1 SSOT URL 경로 교정:
+  - AS-IS: /live/target_weights_latest.json (가상 경로, 존재하지 않음)
+  - TO-BE: /data/target_weights_latest.json (기존 /data/ 디렉토리 활용)
+  - 사유: daifulee/invictus-data 실제 구조 = daily_2026.csv + metadata.json
+          모두 /data/ 하위. target_weights도 같은 위치에 배치.
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-[v5.3 변경사항 (2026-04-23)]
-  - MomMa mp 복원 (v5.2 롤백) — Main decide_target_weights 체인 일부 정합
-
-[v5.2 (롤백됨)]
-  - MomMa mp 제거 → 오류로 판명
+[v5.4 (2026-04-23)]  §1.5 LIVE 비중 복원 (T1 SSOT fetch + 신선도 3단계)
+[v5.3 (2026-04-23)]  MomMa mp 복원 (v5.2 롤백)
+[v5.2 (롤백됨)]     MomMa mp 제거 → 오류로 판명
+[v5.1 (2026-04-23)] REG-025 1차 해소 (yh 1y→18mo)
 
 [v5.1 변경사항 (2026-04-23)]
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -517,10 +506,10 @@ def compare_ssot(probs_poly):
     '공식 SSOT 대비 괴리' 판정은 Claude 정기 브리핑(LIVE Bayesian 기반)에서 수행."""
     return []
 
-# ── T1 SSOT LIVE 비중 fetch (v5.4 REG-025-B) ──
-# daifulee/invictus-data/live/target_weights_latest.json 조회
-# Main Claude 정기 브리핑이 매일 이 파일 갱신 → Discord가 읽기
-T1_TW_URL = "https://raw.githubusercontent.com/daifulee/invictus-data/main/live/target_weights_latest.json"
+# ── T1 SSOT LIVE 비중 fetch (v5.5 Commander 지시 반영) ──
+# 실제 T1 경로: daifulee/invictus-data/data/ (기존 daily_2026.csv + metadata.json이 있는 곳)
+# target_weights_latest.json을 같은 /data/ 디렉토리에 배치
+T1_TW_URL = "https://raw.githubusercontent.com/daifulee/invictus-data/main/data/target_weights_latest.json"
 TW_FRESH_HOURS = 24       # <24h = 🟢
 TW_STALE_HOURS = 48       # 24-48h = 🟡, >48h = 🔴
 
@@ -575,7 +564,7 @@ def build_ssot_embed(d=None):
         desc = (
             f"## 🔴 LIVE 비중 fetch 실패\n"
             f"\n"
-            f"_T1 SSOT (`daifulee/invictus-data/live/target_weights_latest.json`) 미갱신 또는 네트워크 오류._\n"
+            f"_T1 SSOT (`daifulee/invictus-data/data/target_weights_latest.json`) 미갱신 또는 네트워크 오류._\n"
             f"\n"
             f"### 🎯 즉시 조치\n"
             f"• **Claude에게 '브리핑' 요청** → 최신 LIVE 비중 확보\n"
